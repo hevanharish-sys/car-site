@@ -1,4 +1,4 @@
-# CarSite
+# Xtrme
 
 A modern, high-performance web application for automotive discovery and interaction, built with React, TypeScript, and Vite.
 
@@ -32,7 +32,7 @@ A modern, high-performance web application for automotive discovery and interact
    ```
 2. Navigate to the project directory:
    ```bash
-   cd car-site
+   cd xtrme
    ```
 3. Install dependencies:
    ```bash
