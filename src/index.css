@@ -15,19 +15,19 @@ body {
 }
 
 @layer utilities {
-  .targo-clip {
-    --targo-cut: 12px;
+  .xtrme-clip {
+    --xtrme-cut: 12px;
     clip-path: polygon(
       0 0,
-      calc(100% - var(--targo-cut)) 0,
-      100% var(--targo-cut),
+      calc(100% - var(--xtrme-cut)) 0,
+      100% var(--xtrme-cut),
       100% 100%,
-      var(--targo-cut) 100%,
-      0 calc(100% - var(--targo-cut))
+      var(--xtrme-cut) 100%,
+      0 calc(100% - var(--xtrme-cut))
     );
   }
 
-  .targo-glass {
+  .xtrme-glass {
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(0, 0, 0, 0.22);
@@ -39,7 +39,7 @@ body {
       0 24px 70px rgba(0, 0, 0, 0.45);
   }
 
-  .targo-glass::before {
+  .xtrme-glass::before {
     content: '';
     position: absolute;
     inset: 0;

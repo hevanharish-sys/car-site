@@ -3,7 +3,7 @@ import { Phone } from 'lucide-react'
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260227_042027_c4b2f2ea-1c7c-4d6e-9e3d-81a78063703f.mp4'
 
-function TargoLogo() {
+function XtrmeLogo() {
   return (
     <div className="flex items-center gap-3">
       <svg
@@ -35,13 +35,13 @@ function TargoLogo() {
         />
       </svg>
       <span className="text-[18px] font-semibold tracking-[-0.02em]">
-        targo
+        xtrme
       </span>
     </div>
   )
 }
 
-export default function TargoHero() {
+export default function XtrmeHero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-[#000000]">
       <video
@@ -59,7 +59,7 @@ export default function TargoHero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1200px] flex-col px-8 py-8 md:px-16 md:py-8">
         <header className="flex items-center justify-between">
           <a href="#" className="pointer-events-auto select-none">
-            <TargoLogo />
+            <XtrmeLogo />
           </a>
 
           <nav className="hidden items-center gap-8 text-[13px] font-medium uppercase tracking-[0.16em] text-white/86 md:flex">
@@ -92,7 +92,7 @@ export default function TargoHero() {
             </a>
             <a
               href="#"
-              className="pointer-events-auto targo-clip inline-flex items-center justify-center bg-[#EE3F2C] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_18px_55px_rgba(238,63,44,0.26)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
+              className="pointer-events-auto xtrme-clip inline-flex items-center justify-center bg-[#EE3F2C] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_18px_55px_rgba(238,63,44,0.26)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
             >
               Contact Us
             </a>
@@ -108,7 +108,7 @@ export default function TargoHero() {
             <div className="mt-6 flex items-center gap-4">
               <a
                 href="#"
-                className="pointer-events-auto targo-clip inline-flex items-center justify-center bg-[#EE3F2C] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_22px_70px_rgba(238,63,44,0.28)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
+                className="pointer-events-auto xtrme-clip inline-flex items-center justify-center bg-[#EE3F2C] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_22px_70px_rgba(238,63,44,0.28)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
               >
                 Get Started
               </a>
@@ -118,7 +118,7 @@ export default function TargoHero() {
       </div>
 
       <div className="absolute bottom-8 left-8 z-10 md:bottom-10 md:left-16">
-        <div className="pointer-events-auto targo-glass w-[min(420px,calc(100vw-64px))] rounded-2xl p-5 md:p-6">
+        <div className="pointer-events-auto xtrme-glass w-[min(420px,calc(100vw-64px))] rounded-2xl p-5 md:p-6">
           <div className="relative z-10">
             <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/70">
               Book a Free Consultation
@@ -130,7 +130,7 @@ export default function TargoHero() {
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href="#"
-                className="targo-clip inline-flex items-center justify-center gap-2 bg-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black shadow-[0_18px_55px_rgba(0,0,0,0.28)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
+                className="xtrme-clip inline-flex items-center justify-center gap-2 bg-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black shadow-[0_18px_55px_rgba(0,0,0,0.28)] transition-transform hover:translate-y-[-1px] active:translate-y-0"
               >
                 <Phone size={16} />
                 Book a Call
@@ -145,4 +145,3 @@ export default function TargoHero() {
     </section>
   )
 }
-

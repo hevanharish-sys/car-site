@@ -1,5 +1,5 @@
-import TargoHero from './components/TargoHero'
+import XtrmeHero from './components/XtrmeHero'
 
 export default function App() {
-  return <TargoHero />
+  return <XtrmeHero />
 }
