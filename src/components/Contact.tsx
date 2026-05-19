@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, MessageCircle, Send, ChevronRight, User, LayoutGrid, Edit3, ShieldCheck, Clock, Target, Headphones, Zap, Hexagon } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, Send, ChevronRight, User, LayoutGrid, Edit3, ShieldCheck, Clock, Target, Headphones, Zap, Hexagon, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const HexIcon = ({ icon, colorClass = "text-red-500", wrapperClass = "text-red-500/30" }: any) => (
   <div className={`relative w-12 h-12 flex items-center justify-center flex-shrink-0 ${colorClass}`}>
@@ -35,7 +35,7 @@ const WhatsAppCard = ({ href = "#" }: any) => (
   </a>
 );
 
-const InputField = ({ label, icon, type = "text", placeholder }: any) => (
+const InputField = ({ label, icon, type = "text", placeholder, value, onChange, required, disabled }: any) => (
   <div className="flex flex-col gap-2">
     <label className="text-white text-[11px] font-semibold tracking-wider">{label}</label>
     <div className="relative">
@@ -44,7 +44,11 @@ const InputField = ({ label, icon, type = "text", placeholder }: any) => (
       </div>
       <input 
         type={type} 
-        className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm focus:outline-none focus:border-red-500/50 focus:bg-[#111] transition-all placeholder:text-gray-600" 
+        value={value}
+        onChange={onChange}
+        required={required}
+        disabled={disabled}
+        className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm focus:outline-none focus:border-red-500/50 focus:bg-[#111] transition-all placeholder:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed" 
         placeholder={placeholder} 
       />
     </div>
@@ -64,6 +68,52 @@ const TrustItem = ({ icon, title, desc }: any) => (
 );
 
 export function Contact() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!firstName || !email || !message) return;
+
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          message
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
+      setStatus('success');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setMessage('');
+    } catch (error: any) {
+      console.error('Lead submit error:', error);
+      setStatus('error');
+      setErrorMessage(error.message || 'Server error. Please try again.');
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-[#030303] relative overflow-hidden font-sans">
       {/* Cyberpunk Background Ambience */}
@@ -146,14 +196,66 @@ export function Contact() {
                 </div>
 
                 {/* Form */}
-                <form className="flex flex-col gap-6">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  
+                  {status === 'success' && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-xs flex items-center gap-3 shadow-[0_0_15px_rgba(34,197,94,0.1)]"
+                    >
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold block mb-0.5">Message Sent Successfully!</strong>
+                        Thank you! We have received your inquiry and our support team will reach out to you within minutes.
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {status === 'error' && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex items-center gap-3 shadow-[0_0_15px_rgba(230,0,0,0.1)]"
+                    >
+                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold block mb-0.5">Submission Failed</strong>
+                        {errorMessage}
+                      </div>
+                    </motion.div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <InputField label="First Name" icon={<User className="w-4 h-4"/>} placeholder="John" />
-                    <InputField label="Last Name" icon={<User className="w-4 h-4"/>} placeholder="Doe" />
+                    <InputField 
+                      label="First Name" 
+                      icon={<User className="w-4 h-4"/>} 
+                      placeholder="John" 
+                      value={firstName} 
+                      onChange={(e: any) => setFirstName(e.target.value)} 
+                      required 
+                      disabled={status === 'submitting'}
+                    />
+                    <InputField 
+                      label="Last Name" 
+                      icon={<User className="w-4 h-4"/>} 
+                      placeholder="Doe" 
+                      value={lastName} 
+                      onChange={(e: any) => setLastName(e.target.value)} 
+                      disabled={status === 'submitting'}
+                    />
                   </div>
                   
-                  <InputField label="Email Address" type="email" icon={<Mail className="w-4 h-4"/>} placeholder="john@example.com" />
-                  
+                  <InputField 
+                    label="Email Address" 
+                    type="email" 
+                    icon={<Mail className="w-4 h-4"/>} 
+                    placeholder="john@example.com" 
+                    value={email} 
+                    onChange={(e: any) => setEmail(e.target.value)} 
+                    required 
+                    disabled={status === 'submitting'}
+                  />
 
                   <div className="flex flex-col gap-2">
                     <label className="text-white text-[11px] font-semibold tracking-wider">Message</label>
@@ -161,13 +263,34 @@ export function Contact() {
                       <div className="absolute left-4 top-4 text-gray-500">
                         <Edit3 className="w-4 h-4" />
                       </div>
-                      <textarea rows={4} className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm focus:outline-none focus:border-red-500/50 focus:bg-[#111] transition-all resize-none placeholder:text-gray-600" placeholder="Tell us about your project..."></textarea>
+                      <textarea 
+                        rows={4} 
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
+                        disabled={status === 'submitting'}
+                        className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm focus:outline-none focus:border-red-500/50 focus:bg-[#111] transition-all resize-none placeholder:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed" 
+                        placeholder="Tell us about your project..."
+                      ></textarea>
                     </div>
                   </div>
 
-                  <button className="w-full mt-2 bg-[#e60000] hover:bg-red-600 text-white font-bold tracking-widest text-[13px] py-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-[0_0_20px_rgba(230,0,0,0.3)]">
-                    SEND MESSAGE
-                    <Send className="w-4 h-4" />
+                  <button 
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="w-full mt-2 bg-[#e60000] hover:bg-red-600 disabled:bg-red-950 text-white font-bold tracking-widest text-[13px] py-4 rounded-xl flex items-center justify-center gap-3 transition-all shadow-[0_0_20px_rgba(230,0,0,0.3)] disabled:shadow-none disabled:cursor-not-allowed"
+                  >
+                    {status === 'submitting' ? (
+                      <>
+                        SENDING...
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        SEND MESSAGE
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </form>
               </div>

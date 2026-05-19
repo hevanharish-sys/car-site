@@ -38,20 +38,41 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setStatus('sending');
 
-    // Simulate standard premium server send
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: 'Consultation Inquiry',
+          lastName: '',
+          email,
+          phone,
+          message: inquiry
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit consultation request');
+      }
+
       setStatus('success');
       // Reset form fields
       setEmail('');
       setPhone('');
       setInquiry('');
-    }, 2200);
+    } catch (error) {
+      console.error('Consultation request failed:', error);
+      setStatus('idle');
+      setErrors({ inquiry: 'Failed to send. Please check your network or try again.' });
+    }
   };
 
   const handleClose = () => {

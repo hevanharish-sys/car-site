@@ -69,19 +69,40 @@ export function ExitIntentModal() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setStatus('sending');
 
-    // Simulate database / CRM submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: name,
+          lastName: '(Exit Intent Lead)',
+          email,
+          phone,
+          message: 'Requesting Free Automation & Growth Blueprint ($499 Value)'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit exit intent lead');
+      }
+
       setStatus('success');
       setName('');
       setEmail('');
       setPhone('');
-    }, 2000);
+    } catch (error) {
+      console.error('Exit intent lead request failed:', error);
+      setStatus('idle');
+      setErrors({ phone: 'Failed to submit. Please check network connection.' });
+    }
   };
 
   const handleClose = () => {
