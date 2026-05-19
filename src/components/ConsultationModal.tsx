@@ -44,20 +44,12 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
 
     setStatus('sending');
 
-    // Local Testing Mock to prevent 404 HTML parse errors on localhost:5173
-    if (window.location.hostname === 'localhost') {
-      console.log('Local development detected. Simulating API call...');
-      setTimeout(() => {
-        setStatus('success');
-        setEmail('');
-        setPhone('');
-        setInquiry('');
-      }, 1500);
-      return;
-    }
+    const apiEndpoint = window.location.hostname === 'localhost'
+      ? 'https://h2t.tech/api/send-email'
+      : '/api/send-email';
 
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
