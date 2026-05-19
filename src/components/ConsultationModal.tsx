@@ -44,6 +44,18 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
 
     setStatus('sending');
 
+    // Local Testing Mock to prevent 404 HTML parse errors on localhost:5173
+    if (window.location.hostname === 'localhost') {
+      console.log('Local development detected. Simulating API call...');
+      setTimeout(() => {
+        setStatus('success');
+        setEmail('');
+        setPhone('');
+        setInquiry('');
+      }, 1500);
+      return;
+    }
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -59,8 +71,20 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
         })
       });
 
+      let data: any = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.warn('Received non-JSON response from API:', text);
+        if (!response.ok) {
+          throw new Error(`Server error status ${response.status}`);
+        }
+      }
+
       if (!response.ok) {
-        throw new Error('Failed to submit consultation request');
+        throw new Error(data.error || 'Failed to submit consultation request');
       }
 
       setStatus('success');
@@ -68,10 +92,10 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
       setEmail('');
       setPhone('');
       setInquiry('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Consultation request failed:', error);
       setStatus('idle');
-      setErrors({ inquiry: 'Failed to send. Please check your network or try again.' });
+      setErrors({ inquiry: error.message || 'Failed to send. Please check your network or try again.' });
     }
   };
 

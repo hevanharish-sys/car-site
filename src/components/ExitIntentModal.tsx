@@ -75,6 +75,18 @@ export function ExitIntentModal() {
 
     setStatus('sending');
 
+    // Local Testing Mock to prevent 404 HTML parse errors on localhost:5173
+    if (window.location.hostname === 'localhost') {
+      console.log('Local development detected. Simulating API call...');
+      setTimeout(() => {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setPhone('');
+      }, 1500);
+      return;
+    }
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -90,18 +102,30 @@ export function ExitIntentModal() {
         })
       });
 
+      let data: any = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.warn('Received non-JSON response from API:', text);
+        if (!response.ok) {
+          throw new Error(`Server error status ${response.status}`);
+        }
+      }
+
       if (!response.ok) {
-        throw new Error('Failed to submit exit intent lead');
+        throw new Error(data.error || 'Failed to submit exit intent lead');
       }
 
       setStatus('success');
       setName('');
       setEmail('');
       setPhone('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Exit intent lead request failed:', error);
       setStatus('idle');
-      setErrors({ phone: 'Failed to submit. Please check network connection.' });
+      setErrors({ phone: error.message || 'Failed to submit. Please check network connection.' });
     }
   };
 
