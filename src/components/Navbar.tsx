@@ -44,56 +44,65 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-[20px] left-1/2 -translate-x-1/2 z-[50] transition-all duration-300 w-[90%] lg:w-auto"
+      className="fixed top-[20px] left-1/2 -translate-x-1/2 z-[50] transition-all duration-300 w-[90%] lg:w-auto max-w-[1200px] lg:max-w-none"
     >
-      <div className="bg-[#050505]/45 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] rounded-[16px] px-6 lg:px-8 h-[68px] flex items-center w-full justify-center lg:justify-start">
-        <div className="flex items-center w-full justify-between lg:justify-start">
-          
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-10">
-            <div className="flex items-center space-x-8">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`text-[14px] font-medium transition-colors relative py-2 group whitespace-nowrap ${
-                      isActive ? 'text-[#cc0000]' : 'text-gray-300 hover:text-white'
-                    }`}
-                  >
-                    {item.name}
-                    {isActive && (
-                      <motion.span 
-                        layoutId="activeUnderline"
-                        className="absolute bottom-0 left-0 w-full h-[2px] bg-[#cc0000] shadow-[0_0_10px_rgba(204,0,0,0.8)]"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </a>
-                );
-              })}
-            </div>
-            
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent('open-consultation-modal'))}
-              className="text-[13px] font-medium text-white px-5 py-2.5 rounded-[12px] border border-[#cc0000] hover:bg-[#cc0000] flex items-center gap-2 group transition-all duration-300 shadow-[0_0_15px_rgba(204,0,0,0.1)] hover:shadow-[0_0_20px_rgba(204,0,0,0.4)] whitespace-nowrap"
-            >
-              Get Free Consultation
-              <ChevronRight className="w-4 h-4 text-[#cc0000] group-hover:text-white transition-colors" />
-            </button>
-          </div>
+      <div className="bg-[#050505]/45 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] rounded-[20px] lg:rounded-[16px] px-6 lg:px-8 h-[68px] flex items-center w-full lg:w-auto justify-between lg:justify-start">
+        {/* Logo Left (Mobile Only) */}
+        <a 
+          href="#home" 
+          className="flex lg:hidden items-center shrink-0 hover:opacity-85 transition-opacity active:scale-95 duration-150"
+        >
+          <img 
+            src="/image.png" 
+            alt="H2T Technologies Logo" 
+            className="h-7 sm:h-8 w-auto object-contain"
+          />
+        </a>
 
-          {/* Mobile Menu Content inside Pill */}
-          <div className="lg:hidden flex justify-between items-center w-full">
-            <span className="text-white text-sm font-semibold tracking-widest">MENU</span>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-[#cc0000] transition-colors p-1"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center space-x-10">
+          <div className="flex items-center space-x-8">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`text-[14px] font-medium transition-colors relative py-2 group whitespace-nowrap ${
+                    isActive ? 'text-[#cc0000]' : 'text-gray-300 hover:text-white'
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <motion.span 
+                      layoutId="activeUnderline"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-[#cc0000] shadow-[0_0_10px_rgba(204,0,0,0.8)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </div>
+          
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-consultation-modal'))}
+            className="text-[13px] font-medium text-white px-5 py-2.5 rounded-[12px] border border-[#cc0000] hover:bg-[#cc0000] flex items-center gap-2 group transition-all duration-300 shadow-[0_0_15px_rgba(204,0,0,0.1)] hover:shadow-[0_0_20px_rgba(204,0,0,0.4)] whitespace-nowrap"
+          >
+            Get Free Consultation
+            <ChevronRight className="w-4 h-4 text-[#cc0000] group-hover:text-white transition-colors" />
+          </button>
+        </div>
+
+        {/* Mobile Hamburger Right */}
+        <div className="lg:hidden flex items-center">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white hover:text-[#cc0000] transition-colors p-1"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 

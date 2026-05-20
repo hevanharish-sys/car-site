@@ -48,3 +48,17 @@ body {
     box-shadow: 0 0 30px rgba(255, 26, 26, 0.4);
   }
 }
+
+#home {
+  background-image: url('/image copy 9.png');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  #home {
+    background-image: url('/mobile-hero-bg.png');
+    background-position: center center;
+  }
+}

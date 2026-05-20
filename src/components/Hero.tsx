@@ -5,13 +5,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="relative w-full h-screen overflow-hidden flex items-center justify-start bg-[#050505]"
-      style={{
-        backgroundImage: "url('/image copy 9.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "right center",
-        backgroundRepeat: "no-repeat"
-      }}
+      className="relative w-full h-screen overflow-hidden flex items-end md:items-center justify-start bg-[#050505] pb-12 md:pb-0"
     >
       {/* Linear gradient dark overlay */}
       <div 
@@ -22,7 +16,7 @@ export function Hero() {
       />
 
       {/* Hero Content Overlay aligned left-center */}
-      <div className="relative z-10 w-full pl-6 md:pl-[30px] lg:pl-[40px] pt-[40px]">
+      <div className="relative z-10 w-full px-6 md:pl-[30px] lg:pl-[40px] md:pr-0 pt-[40px]">
         <div className="text-left flex flex-col justify-center w-full max-w-[850px]">
           
           {/* Desktop Logo (Visible above heading) */}
@@ -30,7 +24,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-8 flex flex-col"
+            className="mb-8 hidden md:flex flex-col"
           >
             <div className="flex items-center gap-1 mb-1">
               <span className="text-white text-5xl font-black italic tracking-tighter leading-none">H</span>
@@ -52,10 +46,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="text-[36px] md:text-[48px] lg:text-[58px] font-[800] tracking-tight m-0 leading-[1.05] text-white"
+            className="text-[38px] sm:text-[48px] lg:text-[58px] font-[800] tracking-tight m-0 leading-[1.1] sm:leading-[1.05] text-white"
           >
-            <span className="whitespace-nowrap">We Build. We Automate.</span><br />
-            <span className="whitespace-nowrap">We <span className="text-[#cc0000] text-glow select-none">Grow</span> Your Business.</span>
+            <span className="block sm:inline sm:whitespace-nowrap">We Build. </span>
+            <span className="block sm:inline sm:whitespace-nowrap">We Automate.</span><br className="hidden sm:inline" />
+            <span className="block sm:inline sm:whitespace-nowrap">We <span className="text-[#cc0000] text-glow select-none">Grow</span> </span>
+            <span className="block sm:inline sm:whitespace-nowrap">Your Business.</span>
           </motion.h1>
 
           <motion.p
