@@ -24,6 +24,9 @@ export default async function handler(req: any, res: any) {
       return res.status(500).json({ error: 'Resend API key is not configured in Vercel env' });
     }
 
+    // Recipient for leads. Set `LEADS_EMAIL` in your environment (e.g. your Gmail address).
+    const leadsEmail = process.env.LEADS_EMAIL || 'support@h2t.tech';
+
     const emailHtml = `
       <!DOCTYPE html>
       <html>
@@ -83,7 +86,7 @@ export default async function handler(req: any, res: any) {
       },
       body: JSON.stringify({
         from: 'H2T Lead <website@h2t.tech>',
-        to: ['support@h2t.tech'],
+        to: [leadsEmail],
         subject: `New Lead: ${firstName} ${lastName || ''}`,
         html: emailHtml,
         reply_to: email
@@ -104,7 +107,7 @@ export default async function handler(req: any, res: any) {
         },
         body: JSON.stringify({
           from: 'H2T Lead <onboarding@resend.dev>',
-          to: ['support@h2t.tech'],
+          to: [leadsEmail],
           subject: `New Lead: ${firstName} ${lastName || ''} (Onboarding)`,
           html: emailHtml,
           reply_to: email
