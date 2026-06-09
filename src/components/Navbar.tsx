@@ -4,8 +4,8 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', href: '#home', id: 'home' },
+  { name: 'Works', href: '#works', id: 'works' },
   { name: 'Services', href: '#services', id: 'services' },
-  // { name: 'Our Work', href: '#works', id: 'works' },
   { name: 'About Us', href: '#about', id: 'about' },
   { name: 'Contact', href: '#contact', id: 'contact' },
 ];

@@ -47,6 +47,38 @@ body {
   .box-glow-hover:hover {
     box-shadow: 0 0 30px rgba(255, 26, 26, 0.4);
   }
+
+  .marquee-mask {
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marquee-forward {
+    animation: marquee-forward 40s linear infinite;
+  }
+
+  .marquee-reverse {
+    animation: marquee-reverse 45s linear infinite;
+  }
+}
+
+@keyframes marquee-forward {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 #home {

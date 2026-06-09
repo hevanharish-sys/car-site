@@ -3,9 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Philosophy } from './components/Philosophy';
+import { FAQ } from './components/FAQ';
 import { Services } from './components/Services';
+import { FeaturedProjects } from './components/FeaturedProjects';
 import { Portfolio } from './components/Portfolio';
 import { Contact } from './components/Contact';
+import { ScrollingCTA } from './components/ScrollingCTA';
 import { Footer } from './components/Footer';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
 import { ConsultationModal } from './components/ConsultationModal';
@@ -336,10 +340,14 @@ export default function App() {
     <div className="min-h-screen bg-h2t-black text-white font-sans selection:bg-h2t-red selection:text-white">
       <Navbar />
       <Hero />
+      <FeaturedProjects />
+      <Philosophy />
       <Services onSelectService={(serviceKey) => setCurrentPage(serviceKey)} />
       {/* <Portfolio /> */}
       <About />
+      <FAQ />
       <Contact />
+      <ScrollingCTA />
       <Footer 
         onOpenPrivacy={(tab) => setPrivacyModalState({ isOpen: true, defaultTab: tab })} 
         onOpenVision={() => setCurrentPage('vision')} 

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check, Sparkles, Zap, Shield, HelpCircle, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Check, Sparkles, Zap, Shield } from 'lucide-react';
+import { ServiceContact, type ServiceContactConfig } from './ServiceContact';
 
 export interface PricingTier {
   name: string;
@@ -15,35 +16,29 @@ export interface ServiceDetailData {
   tagline: string;
   description: string;
   longDescription: string;
-  iconBg: string;
-  textColor: string;
-  borderColor: string;
   features: { title: string; desc: string }[];
   pricing: PricingTier[];
 }
 
 export const servicesData: Record<string, ServiceDetailData> = {
-  website: {
-    title: 'Website Development',
+  'web-app': {
+    title: 'AI Web & App Development',
     tagline: 'High-performance, custom-crafted digital engines built to convert.',
-    description: 'We engineer ultra-fast, premium websites using modern stacks optimized for SEO, branding, speed, and conversion.',
-    longDescription: 'In today’s digital-first landscape, your website is your primary brand asset. We build hand-crafted digital platforms utilizing React, Next.js, and advanced Tailwind CSS. We avoid standard templates to construct bespoke corporate websites and highly functional landing pages with gorgeous glassmorphism, fluid motion layouts, and blazing-fast loading speeds.',
-    iconBg: 'bg-[#3b82f6]/10',
-    textColor: 'text-[#3b82f6]',
-    borderColor: 'border-[#3b82f6]/30',
+    description: 'Modern high-performance websites, web apps, landing pages, ecommerce platforms, and custom business systems.',
+    longDescription: 'In today’s digital-first landscape, your website is your primary brand asset. We build hand-crafted digital platforms utilizing React, Next.js, and AI-driven optimizations. We avoid standard templates to construct bespoke corporate websites and highly functional web apps with fluid motion layouts, smart features, and blazing-fast loading speeds.',
     features: [
       { title: 'Bespoke UI/UX Design', desc: 'Crafted from scratch to represent your brand’s premium identity.' },
-      { title: 'Interactive Animations', desc: 'Smooth, cinematic micro-interactions using Framer Motion.' },
+      { title: 'Interactive Animations', desc: 'Smooth, cinematic micro-interactions for modern web aesthetics.' },
       { title: 'Ultra Mobile-Responsive', desc: 'Pixel-perfect layouts across desktops, tablets, and smartphones.' },
-      { title: 'Optimized Speed & SEO', desc: 'Perfect Lighthouse audit scores for compounding organic growth.' },
+      { title: 'AI-Enhanced Performance', desc: 'Smart caching, SEO optimization, and intelligent code splitting.' },
     ],
     pricing: [
       {
         name: 'Growth Landing',
-        price: '$999',
-        description: 'Perfect for startups and single product launches looking for premium positioning.',
+        price: '₹15,000+',
+        description: 'Perfect for startups and product launches looking for premium positioning.',
         features: [
-          'High-converting single page',
+          'High-converting single/landing page',
           'Cinematic design aesthetics',
           'Fully mobile responsive',
           'Basic SEO & analytics setup',
@@ -53,21 +48,21 @@ export const servicesData: Record<string, ServiceDetailData> = {
       },
       {
         name: 'Corporate Scale',
-        price: '$2,499',
+        price: '₹35,000+',
         description: 'For growing businesses seeking an authority-building multi-page digital platform.',
         features: [
           'Up to 6 fully custom pages',
           'Advanced micro-animations',
-          'CMS integration (Sanity/Wordpress)',
-          'Complete on-page SEO setup',
-          'Custom graphics & icon sets',
+          'CMS integration setup',
+          'Complete on-page SEO optimization',
+          'Custom graphics & UI elements',
           '1 month of priority support'
         ],
         popular: true
       },
       {
-        name: 'Enterprise App',
-        price: '$4,999',
+        name: 'Enterprise Web App',
+        price: '₹75,000+',
         description: 'Bespoke web applications with advanced custom operations and database structures.',
         features: [
           'Unlimited modern pages',
@@ -80,133 +75,176 @@ export const servicesData: Record<string, ServiceDetailData> = {
       }
     ]
   },
-  video: {
-    title: 'Video Editing & Production',
-    tagline: 'Cinematic storytelling designed to capture attention in seconds.',
-    description: 'Premium video editing for brands, reels, advertisements, and digital creators looking for high retention.',
-    longDescription: 'Attention is the ultimate digital currency. Our high-retention video editing services are engineered for modern social platforms. We combine sharp storytelling, professional color grading, dynamic sound design, kinetic typography, and seamless transitions to elevate commercial ads, social reels, YouTube content, and executive presentations.',
-    iconBg: 'bg-[#ec4899]/10',
-    textColor: 'text-[#ec4899]',
-    borderColor: 'border-[#ec4899]/30',
+  'ai-automation': {
+    title: 'AI Business Automation',
+    tagline: 'Transform manual operations into smart, scalable AI systems.',
+    description: 'Automate workflows, operations, reporting, and repetitive business tasks using AI-powered systems.',
+    longDescription: 'Time is your most valuable asset. We help you reclaim it by replacing manual data entry, reporting, and repetitive workflows with intelligent automation. Using advanced API integrations, AI decision engines, and custom triggers, we build frictionless internal systems that operate your business on autopilot.',
     features: [
-      { title: 'High-Retention Pacing', desc: 'Strategically designed hooks and edits that keep viewers engaged.' },
-      { title: 'Sound Design & SFX', desc: 'Layered soundscapes, custom sound effects, and atmospheric design.' },
-      { title: 'Premium Color Grading', desc: 'Cinematic LUTs and grading customized for your brand’s lighting tone.' },
-      { title: 'Dynamic Kinetic Text', desc: 'Pop captions, stylized animations, and visual call-outs.' },
+      { title: 'Workflow Automation', desc: 'Connect your apps to automatically share data and trigger actions.' },
+      { title: 'Smart CRM Syncing', desc: 'Automated lead tracking, updating, and funnel movement.' },
+      { title: 'AI Data Processing', desc: 'Use AI to parse emails, generate reports, and analyze trends.' },
+      { title: 'Business Optimization', desc: 'Eliminate human error and reduce operational overhead significantly.' },
     ],
     pricing: [
       {
-        name: 'Social Creator',
-        price: '$299',
-        period: '/mo',
-        description: 'Ideal for creators looking to establish a regular presence with high-quality social reels.',
+        name: 'Starter Automation',
+        price: '₹25,000+',
+        description: 'Automate the most tedious core processes in your daily operations.',
         features: [
-          '5 edited Reels / Shorts',
-          'Dynamic visual captions',
-          'Basic color grading & LUTs',
-          'Sound effects & trend music',
-          'Up to 60s length per video',
-          '2 days delivery turnaround'
+          'Up to 3 core workflow automations',
+          'Basic Zapier/Make integration',
+          'Lead to CRM automated sync',
+          'Email & Notification triggers',
+          '1 round of system tuning',
+          'Standard technical support'
         ]
       },
+      {
+        name: 'AI Operations Pro',
+        price: '₹45,000+',
+        description: 'Advanced AI integration for intelligent data handling and team operations.',
+        features: [
+          'Up to 10 advanced workflows',
+          'AI document & data processing',
+          'Complex multi-step conditions',
+          'Automated team task assignment',
+          'Custom webhook development',
+          'Priority implementation support'
+        ],
+        popular: true
+      },
+      {
+        name: 'Enterprise Architect',
+        price: '₹95,000+',
+        description: 'Full-scale digital transformation for complex business ecosystems.',
+        features: [
+          'Unlimited workflow automations',
+          'Custom API and backend scripts',
+          'Full ERP/CRM systemic sync',
+          'Bespoke automated dashboards',
+          'Team training & onboarding',
+          'Dedicated automation engineer'
+        ]
+      }
+    ]
+  },
+  'ai-chatbots': {
+    title: 'AI Chatbots & WhatsApp',
+    tagline: '24/7 intelligent conversational agents that qualify leads and drive sales.',
+    description: '24/7 intelligent chatbot systems for websites, WhatsApp, Instagram, and customer support.',
+    longDescription: 'Customers demand instant responses. We build conversational AI that never sleeps, qualifying leads, answering complex FAQs, and booking appointments automatically via WhatsApp, Instagram, and your website. Experience a system that handles customer service like a human, but at machine speed.',
+    features: [
+      { title: 'Omnichannel Presence', desc: 'Unified AI bots across WhatsApp, Web, FB, and Instagram.' },
+      { title: 'Intelligent Lead Capture', desc: 'Automatically gather details and push them straight to your CRM.' },
+      { title: 'Automated Booking', desc: 'Let the AI handle calendar scheduling without manual back-and-forth.' },
+      { title: 'Natural Language Processing', desc: 'Context-aware responses trained specifically on your business data.' },
+    ],
+    pricing: [
+      {
+        name: 'Starter Bot',
+        price: '₹12,000+',
+        description: 'Perfect for small businesses wanting automated FAQ answering and lead collection.',
+        features: [
+          'Official WhatsApp API Setup',
+          'Custom FAQ Chatbot sequence',
+          'Instant Lead notifications',
+          'Basic Google Sheets Sync',
+          '1 business number connection',
+          'Standard prompt engineering'
+        ]
+      },
+      {
+        name: 'Conversational Pro',
+        price: '₹25,000+',
+        description: 'For brands looking to run automated broadcast campaigns and deep CRM sync.',
+        features: [
+          'Omnichannel Bot (Web + WA)',
+          'Broadcast outreach capabilities',
+          'Advanced conversational AI logic',
+          'Full HubSpot/CRM webhooks',
+          'Multi-agent chat inbox setup',
+          'Monthly performance tweaks'
+        ],
+        popular: true
+      },
+      {
+        name: 'Enterprise Systems',
+        price: '₹55,000+',
+        description: 'Custom conversational pipelines, automated client portals, and massive triggers.',
+        features: [
+          'Bespoke API chatbot integrations',
+          'Mass scale broadcast automation',
+          'Full internal team handoff rules',
+          'Complex calendar & scheduling loop',
+          'Dedicated account manager',
+          'Priority SLA Dev Support'
+        ]
+      }
+    ]
+  },
+  'social-branding': {
+    title: 'Social Media & Branding',
+    tagline: 'Build an authoritative, high-converting digital identity that commands attention.',
+    description: 'Creative branding and social media growth systems for businesses and creators.',
+    longDescription: 'Your brand is what people say about you when you leave the room. We ensure that conversation is premium. Through cohesive brand identity design, strategic content creation, and high-retention video editing (Reels/Shorts), we build communities that trust your business and convert into loyal customers.',
+    features: [
+      { title: 'Visual Identity', desc: 'Logos, color palettes, and typography that exude professionalism.' },
+      { title: 'High-Retention Video', desc: 'Cinematic Reels and Shorts designed for algorithm dominance.' },
+      { title: 'Strategic Content', desc: 'Data-backed posting schedules that maximize engagement rates.' },
+      { title: 'Graphic Design', desc: 'Premium banners, posts, and thumbnails that stop the scroll.' },
+    ],
+    pricing: [
       {
         name: 'Brand Growth',
-        price: '$799',
+        price: '₹8,000',
         period: '/mo',
-        description: 'Complete high-retention content system to dominate social algorithms and build community.',
+        description: 'Establish a consistent, professional baseline across your social channels.',
         features: [
-          '15 premium edited Shorts / Reels',
+          '12 Custom Static Posts / month',
+          'Basic account management',
+          'Hashtag & keyword strategy',
+          'Monthly analytics report',
+          'Profile optimization',
+          'Standard community engagement'
+        ]
+      },
+      {
+        name: 'Creator Scale',
+        price: '₹18,000',
+        period: '/mo',
+        description: 'Aggressive growth system incorporating high-retention short-form video.',
+        features: [
+          '8 Premium Edited Reels / month',
+          '15 Custom Graphic Posts',
           'Advanced kinetic typography',
           'Custom brand sound design',
-          'A/B tested hooks & ideas',
-          'Platform-specific format export',
-          'Dedicated video strategist'
+          'A/B tested visual hooks',
+          'Bi-weekly strategy sessions'
         ],
         popular: true
       },
       {
-        name: 'Cinematic Commercial',
-        price: '$1,499',
-        description: 'Premium promotional video to drive high-ticket sales or explain complex products.',
+        name: 'Omni Dominance',
+        price: '₹35,000',
+        period: '/mo',
+        description: 'Full-suite digital PR, premium thought leadership, and dedicated channel growth.',
         features: [
-          '1 commercial brand film',
-          'Bespoke visual storytelling script',
-          'Heavy motion graphics & VFX',
-          'Voiceover & soundscape production',
-          'Cinematic premium color grade',
-          'Ad campaign optimization guidance'
+          '15 Premium Edited Reels / month',
+          'Daily channel posting & management',
+          'Full Brand Identity revamp',
+          'Proactive community networking',
+          'Bespoke graphical carousels',
+          'Dedicated account strategist'
         ]
       }
     ]
   },
-  linkedin: {
-    title: 'LinkedIn Growth Mastery',
-    tagline: 'Turn your personal brand into a high-ticket lead generation system.',
-    description: 'Establish authority and scale your business using our targeted LinkedIn positioning and copywriting.',
-    longDescription: 'LinkedIn is the premier B2B pipeline. We help founders, CEOs, and agency owners build influential personal brands that organically attract high-ticket leads. Through customized profile optimization, ghostwriting, daily strategic engagement, and direct outreach systems, we build compounding corporate authority.',
-    iconBg: 'bg-[#3b82f6]/10',
-    textColor: 'text-[#3b82f6]',
-    borderColor: 'border-[#3b82f6]/30',
-    features: [
-      { title: 'Executive Ghostwriting', desc: 'Thought-leadership posts that match your voice and drive inbound leads.' },
-      { title: 'Profile Optimization', desc: 'Converting profile headers, taglines, and bios into sales pages.' },
-      { title: 'Outbound Automation', desc: 'Laser-targeted, personalized cold outreach campaigns.' },
-      { title: 'Authority Authority', desc: 'Compounding brand assets that position you as the top 1% expert.' },
-    ],
-    pricing: [
-      {
-        name: 'Personal Authority',
-        price: '$599',
-        period: '/mo',
-        description: 'Optimize your profile and start publishing executive content to build B2B influence.',
-        features: [
-          'Complete profile conversion audit',
-          '12 written authority posts / month',
-          'Tailored B2B content themes',
-          'Hashtag & format optimization',
-          'Monthly analytics audit',
-          'Slack communication support'
-        ]
-      },
-      {
-        name: 'Lead Accelerator',
-        price: '$1,299',
-        period: '/mo',
-        description: 'Bespoke daily thought leadership coupled with an automated B2B outbound campaign.',
-        features: [
-          '20 high-converting posts / month',
-          'Daily profile strategy & writing',
-          'Automated targeted lead search',
-          'Custom sequence outreach copy',
-          'Profile funnel optimization',
-          'Weekly strategy calls'
-        ],
-        popular: true
-      },
-      {
-        name: 'Executive Partner',
-        price: '$2,499',
-        period: '/mo',
-        description: 'Full-suite digital PR, premium thought leadership, ghostwriting, and dedicated high-ticket prospecting.',
-        features: [
-          'Daily custom ghostwriting (24+ posts)',
-          'Complete outbound prospecting',
-          'Active comment networking strategy',
-          'Newsletter creation & scheduling',
-          'Bespoke graphical visual carousels',
-          'Direct lead handoff to booking calendar'
-        ]
-      }
-    ]
-  },
-  seo: {
-    title: 'SEO Optimization',
+  'seo': {
+    title: 'SEO & Digital Visibility',
     tagline: 'Climb organic search rankings and dominate your local and global market.',
-    description: 'Data-driven search engine optimization that generates compounding high-intent traffic.',
+    description: 'Improve search rankings, visibility, and online presence with advanced SEO systems.',
     longDescription: 'Paid ads stop when your budget stops, but SEO provides compounding, long-term returns. We conduct technical auditing, on-page optimization, content cluster structuring, schema styling, and building high-domain backlinks to position your brand as the answer to your customers search queries.',
-    iconBg: 'bg-[#22c55e]/10',
-    textColor: 'text-[#22c55e]',
-    borderColor: 'border-[#22c55e]/30',
     features: [
       { title: 'Technical SEO Auditing', desc: 'Fixing site speed, crawl errors, site architecture, and schema markup.' },
       { title: 'On-Page Optimization', desc: 'Optimizing titles, headers, images, and content for search intent.' },
@@ -215,13 +253,13 @@ export const servicesData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       {
-        name: 'Local Dominance',
-        price: '$499',
+        name: 'Local Visibility',
+        price: '₹10,000',
         period: '/mo',
-        description: 'Dominate regional search parameters and secure high-value local customer inquiries.',
+        description: 'Dominate regional search parameters and secure high-value local inquiries.',
         features: [
           'Google Business Profile setup',
-          'Local citation building (50+)',
+          'Local citation building (20+)',
           'Targeting up to 10 local keywords',
           'On-page title & meta optimization',
           'Monthly local performance report',
@@ -230,155 +268,240 @@ export const servicesData: Record<string, ServiceDetailData> = {
       },
       {
         name: 'Organic Authority',
-        price: '$1,199',
+        price: '₹22,000',
         period: '/mo',
         description: 'National and global optimization to rank for massive transactional terms.',
         features: [
           'Full technical SEO audit & fix',
-          'Targeting up to 30 national keywords',
+          'Targeting up to 25 national keywords',
           '4 optimized blog posts / month',
-          '10 high-domain backlinks / month',
+          'High-domain backlinks acquisition',
           'Complete schema markup injection',
           'Quarterly competitor audit'
         ],
         popular: true
       },
       {
-        name: 'Global Enterprise',
-        price: '$2,499',
+        name: 'Market Leader',
+        price: '₹45,000',
         period: '/mo',
-        description: 'Aggressive SEO dominance to out-rank competitive giants and capture massive market share.',
+        description: 'Aggressive SEO dominance to out-rank competitive giants and capture market share.',
         features: [
-          'Unlimited targeted keywords',
+          'Unlimited targeted keywords focus',
           'Advanced technical architecture',
-          '8 premium blog articles / month',
-          '25+ editorial backlinks / month',
-          'PR outreach & publisher network',
+          '8 premium SEO articles / month',
+          'Aggressive PR & editorial backlinks',
+          'Conversion rate optimization (CRO)',
           'Dedicated SEO account head'
         ]
       }
     ]
   },
-  'google-ads': {
-    title: 'Google & YouTube Ads',
-    tagline: 'Capture high-intent customers exactly when they are searching.',
-    description: 'Scale your sales funnel with high-intent search ads and premium YouTube campaigns.',
-    longDescription: 'Google Ads allow you to bypass years of SEO building by placing you at the top of search listings instantly. We build performance-driven campaigns using Search, YouTube, Display, and Performance Max formats, combined with custom-built high-converting landing pages to maximize advertising return.',
-    iconBg: 'bg-[#ef4444]/10',
-    textColor: 'text-[#ef4444]',
-    borderColor: 'border-[#ef4444]/30',
+  'digital-marketing': {
+    title: 'Digital Marketing & Ads',
+    tagline: 'Capture high-intent customers and scale your revenue predictably.',
+    description: 'Performance marketing systems designed to generate leads, sales, and business growth.',
+    longDescription: 'We deploy performance-driven ad campaigns across Meta (Facebook/Instagram) and Google using advanced targeting, visual creatives, and AI bidding strategies. Combined with custom-built high-converting funnels and automated email retargeting, we maximize your Return on Ad Spend (ROAS).',
     features: [
-      { title: 'Intent Keyword Bidding', desc: 'Bidding exclusively on search terms indicating strong buyer intent.' },
-      { title: 'PMax Optimization', desc: 'AI-assisted campaign targeting spanning all of Google’s visual properties.' },
-      { title: 'A/B landing testing', desc: 'Building landing pages that match search query messaging precisely.' },
+      { title: 'Omnichannel Bidding', desc: 'Strategic ad placements across Meta, Google Search, and YouTube.' },
+      { title: 'Audience Funneling', desc: 'Multi-step retargeting to warm cold prospects into active buyers.' },
+      { title: 'Scroll-Stopping Creative', desc: 'High-fidelity graphics and video ads made to command attention.' },
       { title: 'Pixel Tracking Audits', desc: 'Advanced GTM and offline conversion integration for clean metrics.' },
     ],
     pricing: [
       {
         name: 'Ad Launch',
-        price: '$699',
+        price: '₹15,000',
         period: '/mo',
-        description: 'Complete campaign build and budget monitoring for startup ad campaigns.',
+        description: 'Establish initial ad campaigns to build momentum and generate immediate leads.',
         features: [
-          'Google Search ads configuration',
-          'Keyword research & competitor audit',
-          'Targeted ad copywriting',
-          'Conversion tag setup (GTM)',
-          'Budget management up to $3k/mo',
-          'Weekly dashboard updates'
-        ]
-      },
-      {
-        name: 'Omni Accelerator',
-        price: '$1,499',
-        period: '/mo',
-        description: 'Combine high-intent Search Ads with visual remarketing to capture missed visitors.',
-        features: [
-          'Search + Performance Max ads',
-          'YouTube retargeting ads build',
-          'Custom landing page building',
-          'Ad copy & design variants testing',
-          'Budget management up to $10k/mo',
-          'Bi-weekly strategy reviews'
-        ],
-        popular: true
-      },
-      {
-        name: 'Market Dominance',
-        price: '$2,999',
-        period: '/mo',
-        description: 'Bespoke multichannel visual ads, CRM database loop integration, and heavy scale.',
-        features: [
-          'Full visual & search campaigns',
-          'YouTube premium video ads setup',
-          'Multiple custom conversion funnels',
-          'Offline conversion API sync',
-          'Unlimited budget management',
-          'Daily bid & placement optimization'
-        ]
-      }
-    ]
-  },
-  'facebook-ads': {
-    title: 'Facebook & Instagram Ads',
-    tagline: 'Stop the scroll, spark desire, and scale your social commerce.',
-    description: 'Target your ideal demographic with high-converting Meta social campaigns.',
-    longDescription: 'Meta is the ultimate tool for visual discovery. We create highly persuasive graphic and video ads that halt users in their feeds. Combined with advanced Lookalike and custom retargeting setups, we ensure your ad budget is directed strictly toward highly interested B2C or B2B buyers.',
-    iconBg: 'bg-[#a855f7]/10',
-    textColor: 'text-[#a855f7]',
-    borderColor: 'border-[#a855f7]/30',
-    features: [
-      { title: 'Scroll-Stopping Design', desc: 'High-fidelity graphics and Reels edits made to command attention.' },
-      { title: 'Audience Funneling', desc: 'Multi-step retargeting to warm cold prospects into active buyers.' },
-      { title: 'Lookalike Modeling', desc: 'Using client databases to find similar high-spending demographics.' },
-      { title: 'CAPI Optimizations', desc: 'Bypassing iOS privacy blocks with clean server-side syncing.' },
-    ],
-    pricing: [
-      {
-        name: 'Meta Launch',
-        price: '$699',
-        period: '/mo',
-        description: 'Establish initial social campaigns to build initial momentum and generate immediate leads.',
-        features: [
-          'Ad account setup & Pixel placement',
-          'Core demographic targeting build',
-          '4 custom-crafted graphic ad creatives',
-          'A/B title testing',
-          'Budget management up to $3k/mo',
-          'Bi-weekly analysis reviews'
+          'Meta or Google Ads Setup',
+          'Targeting & audience research',
+          'Ad copywriting & setup',
+          'Basic conversion tracking',
+          'Budget management (up to ₹1L)',
+          'Monthly performance report'
         ]
       },
       {
         name: 'Growth Scale',
-        price: '$1,499',
+        price: '₹30,000',
         period: '/mo',
-        description: 'A comprehensive, multi-step campaign setup with custom video assets and Lookalike expansion.',
+        description: 'Comprehensive multi-step campaign setup with advanced retargeting.',
         features: [
+          'Meta + Google Search campaigns',
           'Advanced social funnels (Warm/Cold)',
-          'Lookalike audience mapping',
-          '12 custom graphic & video creatives',
+          'Custom graphic & video creatives',
           'Server-side CAPI integration',
-          'Budget management up to $10k/mo',
-          'Weekly strategy calls'
+          'Budget management (up to ₹5L)',
+          'Bi-weekly strategy calls'
         ],
         popular: true
       },
       {
-        name: 'Meta Dominance',
-        price: '$2,999',
+        name: 'Omni Dominance',
+        price: '₹60,000',
         period: '/mo',
-        description: 'Full omni-funnel dominance. Visual creatives, constant optimization, and high-budget scales.',
+        description: 'Full omni-funnel dominance. Visual creatives, constant optimization, high scale.',
         features: [
+          'Omnichannel (Meta, Google, YT)',
           'High-budget creative scaling',
-          'UGC / Video design custom pipeline',
-          'Omnichannel Retargeting loops',
+          'Email & Funnel Marketing integration',
           'Complete landing page funnel builds',
           'Unlimited budget scale oversight',
           '24/7 campaign tracking & bid scaling'
         ]
       }
     ]
+  },
+  'ecommerce': {
+    title: 'Ecommerce Growth Solutions',
+    tagline: 'Complete automated digital storefronts built to scale your product sales.',
+    description: 'Complete ecommerce setup and automation systems to scale online stores.',
+    longDescription: 'Selling online requires more than just a cart. We build robust, conversion-optimized Shopify and custom ecommerce platforms. From seamless payment gateways and inventory syncing to advanced abandoned cart recovery flows and AI product recommendations, we engineer storefronts designed to maximize average order value.',
+    features: [
+      { title: 'Shopify Architecture', desc: 'Premium custom themes designed for speed and mobile conversions.' },
+      { title: 'Conversion Optimization', desc: 'Frictionless checkout flows and strategic product page layouts.' },
+      { title: 'Marketing Automation', desc: 'Automated email flows for abandoned carts and post-purchase upsells.' },
+      { title: 'Inventory Systems', desc: 'Real-time synchronization of stock, orders, and fulfillment.' },
+    ],
+    pricing: [
+      {
+        name: 'Store Launch',
+        price: '₹20,000+',
+        description: 'Perfect for new brands launching their first professional online store.',
+        features: [
+          'Shopify Store Setup',
+          'Premium Theme configuration',
+          'Up to 20 Product Uploads',
+          'Payment Gateway Integration',
+          'Basic Shipping Rules',
+          'Standard Mobile Optimization'
+        ]
+      },
+      {
+        name: 'Ecom Accelerator',
+        price: '₹45,000+',
+        description: 'Advanced storefront with marketing automations to boost revenue.',
+        features: [
+          'Custom UI/UX Store Design',
+          'Advanced Product Filtering',
+          'Abandoned Cart Email Setup',
+          'Review & Loyalty App Integration',
+          'On-Page SEO Optimization',
+          'Up to 100 Product Uploads'
+        ],
+        popular: true
+      },
+      {
+        name: 'Enterprise Scale',
+        price: '₹85,000+',
+        description: 'Fully custom headless commerce or complex operational integrations.',
+        features: [
+          'Bespoke Headless/Custom Build',
+          'ERP/Inventory System Sync',
+          'Advanced Subscriptions setup',
+          'AI Product Recommendations',
+          'Custom Checkout modifications',
+          'Ongoing priority technical support'
+        ]
+      }
+    ]
   }
+};
+
+const serviceContactByKey: Record<string, ServiceContactConfig> = {
+  'web-app': {
+    headline: "Let's Build Your",
+    accent: 'Digital Platform.',
+    description:
+      'Tell us about your website or app vision. We will map architecture, timelines, and a custom development quote.',
+    messagePlaceholder:
+      'Describe your site or app goals, pages needed, features, and preferred timeline...',
+    highlights: [
+      'Custom UI/UX from scratch',
+      'React, Next.js & modern stack',
+      'Free consultation & project roadmap',
+    ],
+  },
+  'ai-automation': {
+    headline: 'Ready to Automate',
+    accent: 'Your Business?',
+    description:
+      'Share your current workflows and bottlenecks. We will design intelligent automations that save time and reduce errors.',
+    messagePlaceholder:
+      'Which processes should be automated? What tools do you currently use (CRM, sheets, email)?',
+    highlights: [
+      'Workflow & CRM integrations',
+      'AI-powered data processing',
+      'Scalable automation architecture',
+    ],
+  },
+  'ai-chatbots': {
+    headline: 'Launch Your',
+    accent: 'AI Chatbot.',
+    description:
+      'Get a conversational AI built for WhatsApp, your website, or social channels — for leads, support, and bookings.',
+    messagePlaceholder:
+      'Which channels do you need? WhatsApp, website, Instagram? What should the bot handle?',
+    highlights: [
+      'WhatsApp API & web chatbots',
+      'Lead capture & CRM sync',
+      '24/7 automated responses',
+    ],
+  },
+  'social-branding': {
+    headline: 'Elevate Your',
+    accent: 'Brand Presence.',
+    description:
+      'Let us discuss your brand identity, content strategy, reels, and social growth goals.',
+    messagePlaceholder:
+      'Tell us about your brand, platforms, content style, and monthly posting needs...',
+    highlights: [
+      'Logo & visual identity design',
+      'Reels, posts & graphic content',
+      'Social media growth strategy',
+    ],
+  },
+  seo: {
+    headline: 'Rank Higher with',
+    accent: 'Smart SEO.',
+    description:
+      'Share your website and target market. We will audit your visibility and propose a tailored SEO growth plan.',
+    messagePlaceholder:
+      'Your website URL, target keywords, business location, and current ranking challenges...',
+    highlights: [
+      'Technical & on-page SEO',
+      'Local & national keyword targeting',
+      'Monthly performance reporting',
+    ],
+  },
+  'digital-marketing': {
+    headline: 'Scale Your',
+    accent: 'Ad Campaigns.',
+    description:
+      'Tell us your budget, audience, and goals. We will build performance campaigns that drive leads and sales.',
+    messagePlaceholder:
+      'Ad platforms (Meta, Google), monthly budget, target audience, and conversion goals...',
+    highlights: [
+      'Meta & Google Ads management',
+      'Retargeting & funnel setup',
+      'Creative design & ROAS tracking',
+    ],
+  },
+  ecommerce: {
+    headline: 'Grow Your',
+    accent: 'Online Store.',
+    description:
+      'From Shopify setup to checkout optimization — let us plan your store launch or revenue scale-up.',
+    messagePlaceholder:
+      'Store platform, product count, payment setup, and current sales challenges...',
+    highlights: [
+      'Shopify & custom store builds',
+      'Payment & inventory integration',
+      'Abandoned cart & email automation',
+    ],
+  },
 };
 
 interface ServiceDetailPageProps {
@@ -419,7 +542,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
           Back to Services
         </button>
         <span className="text-xl font-bold tracking-tighter">
-          H2T<span className="text-red-500">.</span>
+          H2T<span className="text-h2t-red">.</span>
         </span>
       </nav>
 
@@ -433,16 +556,16 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ${data.iconBg} ${data.borderColor} border mb-6`}>
-              <Sparkles className={`w-3.5 h-3.5 ${data.textColor}`} />
-              <span className={`text-[10px] font-bold tracking-[0.2em] uppercase ${data.textColor}`}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-h2t-red/10 border border-h2t-red/30 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-h2t-red" />
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-h2t-red">
                 Premium Services
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
               {data.title.split(' ').map((word, i) => (
-                <span key={i} className={i === data.title.split(' ').length - 1 ? data.textColor : 'text-white'}>
+                <span key={i} className={i === data.title.split(' ').length - 1 ? 'text-h2t-red' : 'text-white'}>
                   {word}{' '}
                 </span>
               ))}
@@ -452,7 +575,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
               {data.tagline}
             </p>
 
-            <p className="text-sm md:text-base font-light text-gray-400 leading-relaxed mb-12 border-l-2 border-red-500/30 pl-6">
+            <p className="text-sm md:text-base font-light text-gray-400 leading-relaxed mb-12 border-l-2 border-h2t-red/50 pl-6">
               {data.longDescription}
             </p>
           </motion.div>
@@ -465,9 +588,9 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-                className="p-5 rounded-2xl bg-[#0a0a0a] border border-white/5 hover:border-white/10 transition-colors"
+                className="p-5 rounded-2xl bg-[#0a0a0a] border border-white/5 hover:border-h2t-red/30 transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-red-500/5 border border-red-500/10 flex items-center justify-center text-red-500 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-h2t-red/10 border border-h2t-red/20 flex items-center justify-center text-h2t-red mb-4">
                   <Zap className="w-4 h-4" />
                 </div>
                 <h3 className="text-white font-bold text-[15px] mb-2">{feature.title}</h3>
@@ -483,15 +606,15 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="w-full relative aspect-[4/3] rounded-[2rem] p-[1px] bg-gradient-to-b from-white/10 to-transparent overflow-hidden"
+            className="w-full relative aspect-[4/3] rounded-[2rem] p-[1px] bg-gradient-to-b from-h2t-red/20 to-transparent overflow-hidden"
           >
-            <div className="absolute inset-0 bg-[#080808] rounded-[2rem] overflow-hidden flex flex-col p-8 justify-between border border-black shadow-[inset_0_0_60px_rgba(255,255,255,0.02)]">
+            <div className="absolute inset-0 bg-[#080808] rounded-[2rem] overflow-hidden flex flex-col p-8 justify-between border border-h2t-red/10 shadow-[inset_0_0_60px_rgba(255,26,26,0.03)]">
               {/* Top Details */}
               <div className="flex justify-between items-start">
                 <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-h2t-red" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-900/60" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
                 </div>
                 <div className="text-[10px] text-gray-500 font-mono">STATUS // LIVE</div>
               </div>
@@ -507,7 +630,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
               {/* Bottom Row Trust Badges */}
               <div className="flex items-center justify-between pt-6 border-t border-white/5">
                 <div className="flex items-center gap-2 text-gray-400 text-[10px] uppercase font-bold tracking-widest">
-                  <Shield className="w-4 h-4 text-green-400" />
+                  <Shield className="w-4 h-4 text-h2t-red" />
                   Verified System
                 </div>
                 <div className="flex items-center gap-1 text-gray-500 text-[10px] font-mono">
@@ -522,9 +645,9 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
       {/* Pricing Header */}
       <div className="max-w-7xl mx-auto px-6 mt-28 mb-16 text-center">
         <div className="flex items-center justify-center gap-4 mb-4">
-          <div className="h-[1px] w-8 bg-red-500/50" />
-          <span className="text-red-500 text-xs font-bold tracking-[0.2em] uppercase">Flexible Rates</span>
-          <div className="h-[1px] w-8 bg-red-500/50" />
+          <div className="h-[1px] w-8 bg-h2t-red/50" />
+          <span className="text-h2t-red text-xs font-bold tracking-[0.2em] uppercase">Flexible Rates</span>
+          <div className="h-[1px] w-8 bg-h2t-red/50" />
         </div>
         <h2 className="text-3xl md:text-4xl font-bold">Transparent Tiers & Plans</h2>
         <p className="text-sm font-light text-gray-400 mt-3 max-w-lg mx-auto">
@@ -542,12 +665,12 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
             transition={{ duration: 0.6, delay: idx * 0.1 }}
             className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 ${
               tier.popular
-                ? 'bg-gradient-to-b from-red-950/20 via-black to-black border-red-500/50 shadow-[0_0_30px_rgba(239,68,68,0.1)]'
-                : 'bg-[#080808] border-white/5 hover:border-white/10'
+                ? 'bg-gradient-to-b from-red-950/30 via-[#080808] to-black border-h2t-red/50 shadow-[0_0_30px_rgba(255,26,26,0.15)]'
+                : 'bg-[#080808] border-white/5 hover:border-h2t-red/20'
             } border h-full`}
           >
             {tier.popular && (
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-full uppercase shadow-[0_0_15px_rgba(230,0,0,0.5)]">
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-h2t-red text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-full uppercase shadow-[0_0_15px_rgba(255,26,26,0.5)]">
                 Most Popular
               </span>
             )}
@@ -568,7 +691,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
             <ul className="flex flex-col gap-4 mb-8 flex-grow">
               {tier.features.map((feat, fIdx) => (
                 <li key={fIdx} className="flex items-start gap-3">
-                  <div className="w-4 h-4 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 mt-0.5 shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-h2t-red/10 flex items-center justify-center text-h2t-red mt-0.5 shrink-0">
                     <Check className="w-2.5 h-2.5" />
                   </div>
                   <span className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed">{feat}</span>
@@ -578,18 +701,15 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
 
             {/* Call to Action Button */}
             <a
-              href="#contact"
+              href="#service-contact"
               onClick={(e) => {
                 e.preventDefault();
-                onBack();
-                setTimeout(() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
+                document.getElementById('service-contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className={`w-full text-center py-4 rounded-xl text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
                 tier.popular
-                  ? 'bg-red-600 hover:bg-red-700 text-white shadow-[0_0_20px_rgba(230,0,0,0.3)]'
-                  : 'bg-white/5 hover:bg-white/10 text-white'
+                  ? 'bg-h2t-red hover:bg-red-600 text-white shadow-[0_0_20px_rgba(255,26,26,0.35)]'
+                  : 'bg-white/5 hover:bg-h2t-red/10 hover:border hover:border-h2t-red/20 text-white'
               }`}
             >
               Get Started
@@ -598,33 +718,12 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
         ))}
       </div>
 
-      {/* Direct Communication Info banner */}
-      <div className="max-w-7xl mx-auto px-6 mt-20">
-        <div className="rounded-2xl bg-[#0a0a0a] border border-white/5 p-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-red-500/5 border border-red-500/10 flex items-center justify-center text-red-500">
-              <MessageSquare className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="text-white font-bold text-sm">Need a custom feature set or timeline?</h4>
-              <p className="text-gray-400 text-xs font-light mt-0.5">Let's hop on a call and draft a customized quote for your needs.</p>
-            </div>
-          </div>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              onBack();
-              setTimeout(() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }, 300);
-            }}
-            className="px-6 py-3.5 bg-white/5 hover:bg-white/10 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors border border-white/5"
-          >
-            Request Custom Proposal
-          </a>
-        </div>
-      </div>
+      {serviceContactByKey[serviceKey] && (
+        <ServiceContact
+          serviceName={data.title}
+          contact={serviceContactByKey[serviceKey]}
+        />
+      )}
     </div>
   );
 }

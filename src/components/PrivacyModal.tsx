@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShieldCheck, FileText, Info, Scale, HelpCircle } from 'lucide-react';
+import { X, ShieldCheck, FileText, Info, Scale, HelpCircle, User, Settings, Share2, Cookie, Lock, Link, UserCheck, Database, Smile } from 'lucide-react';
 
 interface PrivacyModalProps {
   isOpen: boolean;
@@ -55,7 +55,7 @@ export function PrivacyModal({ isOpen, onClose, defaultTab }: PrivacyModalProps)
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold font-serif text-white tracking-tight leading-none">
-                      {activeTab === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+                      {activeTab === 'privacy' ? 'Privacy Policy' : 'Terms & Conditions'}
                     </h3>
                     <p className="text-gray-400 text-xs mt-1.5 font-normal tracking-wide uppercase">
                       H2T Technologies
@@ -92,9 +92,7 @@ export function PrivacyModal({ isOpen, onClose, defaultTab }: PrivacyModalProps)
                       ? 'bg-h2t-red text-white shadow-md'
                       : 'text-gray-400 hover:text-white hover:bg-white/[0.02]'
                   }`}
-                >
-                  Terms of Service
-                </button>
+                >Terms & Conditions</button>
               </div>
 
               {/* Scrollable text panel */}
@@ -102,405 +100,313 @@ export function PrivacyModal({ isOpen, onClose, defaultTab }: PrivacyModalProps)
                 
                 {activeTab === 'privacy' ? (
                   /* ================== PRIVACY POLICY TAB ================== */
-                  <div className="space-y-6">
-                    <p className="text-white/90">
-                      At H2T Technologies, we value your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, store, and protect your information when you interact with our website, services, and digital platforms.
-                    </p>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">1.</span> Information We Collect
-                      </h4>
-                      <p>We may collect the following information when you use our website or contact our team:</p>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                          <h5 className="text-xs font-bold uppercase tracking-wider text-h2t-red mb-2 flex items-center gap-1.5">
-                            <FileText className="w-3.5 h-3.5" /> Personal Information
-                          </h5>
-                          <ul className="list-disc list-inside space-y-1 text-xs text-gray-400">
-                            <li>Name</li>
-                            <li>Email address</li>
-                            <li>Phone number</li>
-                            <li>Business details</li>
-                            <li>Social media profile links</li>
-                          </ul>
-                        </div>
-
-                        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                          <h5 className="text-xs font-bold uppercase tracking-wider text-h2t-red mb-2 flex items-center gap-1.5">
-                            <Info className="w-3.5 h-3.5" /> Technical Information
-                          </h5>
-                          <ul className="list-disc list-inside space-y-1 text-xs text-gray-400">
-                            <li>IP address</li>
-                            <li>Browser type</li>
-                            <li>Device information</li>
-                            <li>Pages visited</li>
-                            <li>Cookies and analytics data</li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 mt-3">
-                        <h5 className="text-xs font-bold uppercase tracking-wider text-h2t-red mb-2">
-                          Service-Related Information
-                        </h5>
-                        <p className="text-xs text-gray-400 mb-2">Information shared while requesting:</p>
-                        <ul className="grid grid-cols-2 gap-x-4 gap-y-1 list-disc list-inside text-xs text-gray-400">
-                          <li>Website development</li>
-                          <li>Video editing</li>
-                          <li>Marketing services</li>
-                          <li>Automation solutions</li>
-                          <li>Advertisement campaigns</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">2.</span> How We Use Your Information
-                      </h4>
-                      <p>H2T Technologies uses collected information to:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Provide and improve our services</li>
-                        <li>Respond to inquiries and consultation requests</li>
-                        <li>Deliver project updates and support</li>
-                        <li>Improve website performance and user experience</li>
-                        <li>Run analytics and marketing campaigns</li>
-                        <li>Maintain platform security and prevent misuse</li>
-                      </ul>
-                      <p className="text-white/80 italic font-normal mt-2">
-                        We do not sell, rent, or trade your personal information to third parties.
+                  <div className="space-y-8 mb-8">
+                    <div className="text-center mb-8 mt-2">
+                      <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-widest mb-4 flex items-center justify-center gap-4">
+                        <span className="h-[2px] w-6 bg-h2t-red"></span>
+                        PRIVACY POLICY
+                        <span className="h-[2px] w-6 bg-h2t-red"></span>
+                      </h2>
+                      <p className="text-sm text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        H2T Technologies respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
                       </p>
                     </div>
 
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">3.</span> Cookies & Tracking Technologies
-                      </h4>
-                      <p>Our website may use cookies and similar technologies to:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Analyze website traffic</li>
-                        <li>Improve user experience</li>
-                        <li>Remember preferences</li>
-                        <li>Enhance website functionality</li>
-                      </ul>
-                      <p>You may disable cookies through your browser settings if preferred.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">4.</span> Data Protection & Security
-                      </h4>
-                      <p>We implement industry-standard security measures to protect your data against unauthorized access, data loss, misuse, disclosure, or alteration.</p>
-                      <p className="text-gray-400 italic">While we strive to protect your information, no online platform can guarantee absolute security.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">5.</span> Third-Party Services
-                      </h4>
-                      <p>We may use trusted third-party tools and platforms including:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Google Analytics</li>
-                        <li>Meta Advertising Platforms</li>
-                        <li>LinkedIn Marketing Tools</li>
-                        <li>WhatsApp Business Services</li>
-                        <li>Payment gateways and hosting providers</li>
-                      </ul>
-                      <p>These services may collect information according to their own privacy policies.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">6.</span> Data Sharing
-                      </h4>
-                      <p>We only share information when legally required, to provide requested services, or with trusted partners involved in project delivery. We ensure reasonable confidentiality measures are maintained.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">7.</span> Your Rights
-                      </h4>
-                      <p>You have the right to:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Access your personal information</li>
-                        <li>Request corrections or updates</li>
-                        <li>Request deletion of your data</li>
-                        <li>Withdraw consent for marketing communications</li>
-                      </ul>
-                      <p>To request any changes, contact us directly.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">8.</span> External Links
-                      </h4>
-                      <p>Our website may contain links to third-party websites or social platforms. H2T Technologies is not responsible for the privacy practices or content of external websites.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">9.</span> Changes to This Policy
-                      </h4>
-                      <p>We may update this Privacy Policy periodically to reflect service changes, legal updates, or security improvements. Updated versions will be published on this page.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">10.</span> Contact Information
-                      </h4>
-                      <p>For privacy-related questions or requests, contact:</p>
-                      
-                      <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1 text-xs text-gray-400">
-                        <p className="font-bold text-white text-sm mb-1">H2T Technologies</p>
-                        <p>Email: <a href="mailto:support@h2t.tech" className="text-h2t-red hover:underline">support@h2t.tech</a></p>
-                        <p>Website: <a href="https://h2t.tech" target="_blank" rel="noopener noreferrer" className="text-h2t-red hover:underline">h2t.tech</a></p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                      {/* Item 1 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">1</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Information We Collect</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <User className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We collect personal information that you provide to us, such as your name, email address, phone number, company name, and any other details shared while contacting us or using our services. We may also collect non-personal information such as browser type, device information, and website usage data.
+                          </p>
+                        </div>
                       </div>
+
+                      {/* Item 2 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">2</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">How We Use Your Information</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Settings className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We use the information we collect to provide, maintain, and improve our services, to respond to inquiries, to communicate with you, to send updates or promotional materials (with your consent), and to enhance your overall experience with our website and services.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 3 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">3</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Information Sharing</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Share2 className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We do not sell, trade, or rent your personal information to third parties. We may share information with trusted partners or service providers who assist us in operating our website and delivering our services, provided they agree to keep your information confidential.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 4 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">4</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Cookies And Tracking Technologies</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Cookie className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            Our website uses cookies and similar technologies to enhance user experience, analyze website traffic, and understand user behavior. You can choose to disable cookies through your browser settings, but this may affect certain functionality of our website.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 5 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">5</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Data Security</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Lock className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of online transmission is 100% secure.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 6 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">6</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Third-Party Links</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Link className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of such websites. We encourage you to review the privacy policies of those websites before providing any information.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 7 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">7</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Your Rights</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <UserCheck className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            You have the right to access, update, or delete your personal information. You may also opt out of receiving promotional communications from us at any time by contacting us directly.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 8 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">8</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Data Retention</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Database className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including for legal, accounting, or reporting requirements.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 9 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">9</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Children's Privacy</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <Smile className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            Our services are not intended for individuals under the age of 13. We do not knowingly collect personal information from children. If we become aware that we have collected such information, we will take steps to delete it.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 10 */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">10</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Changes To This Policy</h3>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <FileText className="w-6 h-6 text-gray-400 shrink-0 mt-1" strokeWidth={1.5} />
+                          <p className="text-xs text-gray-400 leading-relaxed">
+                            We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-12 flex items-center justify-center gap-2 text-gray-400 border-t border-white/10 pt-6">
+                      <ShieldCheck className="w-4 h-4 text-h2t-red" />
+                      <p className="text-xs italic">
+                        By using our website or services, you consent to the terms of this Privacy Policy.
+                      </p>
                     </div>
                   </div>
                 ) : (
-                  /* ================== TERMS OF SERVICE TAB ================== */
-                  <div className="space-y-6">
-                    <p className="text-white/90">
-                      Welcome to H2T Technologies. By accessing our website, services, or digital platforms, you agree to comply with and be bound by the following Terms of Service. Please read these terms carefully before using our services.
-                    </p>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 1 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">1.</span> Acceptance of Terms
-                      </h4>
-                      <p>
-                        By accessing or using any services provided by H2T Technologies, you confirm that you have read, understood, and agreed to these Terms of Service and our Privacy Policy.
-                      </p>
-                      <p className="text-gray-400 italic">
-                        If you do not agree with any part of these terms, please discontinue use of our services immediately.
-                      </p>
+                  /* ================== TERMS & CONDITIONS TAB ================== */
+                  <div className="space-y-8 mb-8">
+                    <div className="text-center mb-8 mt-2">
+                      <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-widest mb-4 flex items-center justify-center gap-4">
+                        <span className="h-[2px] w-6 bg-h2t-red"></span>
+                        TERMS & CONDITIONS
+                        <span className="h-[2px] w-6 bg-h2t-red"></span>
+                      </h2>
                     </div>
 
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 2 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">2.</span> Services Offered
-                      </h4>
-                      <p>H2T Technologies provides digital and technology-related services including, but not limited to:</p>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 list-disc list-inside text-gray-400">
-                        <li>Website Development</li>
-                        <li>Video Editing</li>
-                        <li>Business Automation</li>
-                        <li>WhatsApp Marketing & Automation</li>
-                        <li>Meta Ads Management</li>
-                        <li>Google & YouTube Advertising</li>
-                        <li>LinkedIn Growth Solutions</li>
-                        <li>SEO Optimization</li>
-                        <li>Branding & Creative Services</li>
-                        <li>Digital Consultation & Strategy</li>
-                      </ul>
-                      <p className="text-xs text-gray-500 pt-1">
-                        We reserve the right to modify, suspend, or discontinue any service at any time without prior notice.
-                      </p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 3 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">3.</span> Client Responsibilities
-                      </h4>
-                      <p>Clients agree to:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Provide accurate project requirements and information</li>
-                        <li>Respond to communication within a reasonable timeframe</li>
-                        <li>Provide necessary access, credentials, approvals, and assets when required</li>
-                        <li>Ensure submitted content complies with applicable laws and regulations</li>
-                        <li>Avoid submitting illegal, copyrighted, harmful, or misleading materials</li>
-                      </ul>
-                      <p className="text-xs text-gray-500 italic mt-2">
-                        H2T Technologies shall not be responsible for delays caused by incomplete information, delayed responses, or lack of client cooperation.
-                      </p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 4 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">4.</span> Payments, Billing & Refunds
-                      </h4>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400 mb-3">
-                        <li>Payments must be made according to agreed project terms and timelines.</li>
-                        <li>Advance payments may be required before project initiation.</li>
-                        <li>Delayed payments may result in paused services, restricted access, or project delays.</li>
-                        <li>Pricing for custom projects, retainers, subscriptions, and marketing services will be discussed individually.</li>
-                      </ul>
-                      
-                      <div className="p-4 rounded-xl bg-h2t-red/5 border border-h2t-red/15 mt-2">
-                        <h5 className="text-xs font-bold uppercase tracking-wider text-h2t-red mb-2">
-                          Refund Policy
-                        </h5>
-                        <p className="text-xs text-gray-400 mb-2">
-                          All payments made to H2T Technologies are generally non-refundable once work has commenced.
-                        </p>
-                        <p className="text-xs text-gray-400">
-                          However, refunds may be issued only if H2T Technologies agrees under specific circumstances after reviewing the project status, service usage, and work completed. Refund approvals, if any, will be provided solely at the discretion of H2T Technologies.
+                    <div className="flex flex-col gap-8">
+                      {/* Item 1 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">1</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Project Initiation</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          All projects will commence only after confirmation from the client and acceptance of the quotation, proposal, or invoice shared by H2T Technologies.
                         </p>
                       </div>
-                    </div>
 
-                    <hr className="border-white/5 my-4" />
+                      {/* Item 2 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">2</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Payment Terms</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          A minimum advance payment may be required before starting the project. Remaining payments must be completed according to the agreed milestones or delivery schedule.
+                        </p>
+                      </div>
 
-                    {/* Section 5 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">5.</span> Intellectual Property
-                      </h4>
-                      <p>Unless otherwise agreed in writing:</p>
-                      <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
-                        <li>Final approved deliverables become the property of the client after full payment is completed.</li>
-                        <li>H2T Technologies retains the right to showcase completed work in portfolios, social media, presentations, and case studies unless restricted through a confidentiality agreement.</li>
-                      </ul>
-                      <p className="text-white/80 mt-2 font-normal">
-                        All proprietary systems, frameworks, automation setups, internal processes, concepts, and development methodologies remain the intellectual property of H2T Technologies.
-                      </p>
-                    </div>
+                      {/* Item 3 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">3</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Project Delivery</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          Delivery timelines are estimated based on project scope and client response time. Delays in content, approvals, or communication from the client may affect final delivery dates.
+                        </p>
+                      </div>
 
-                    <hr className="border-white/5 my-4" />
+                      {/* Item 4 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">4</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Revisions</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          Reasonable revisions are included as per the agreed project scope. Additional revisions or major scope changes may involve extra charges.
+                        </p>
+                      </div>
 
-                    {/* Section 6 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">6.</span> Revisions & Scope Changes
-                      </h4>
-                      <p>Projects include revisions based on agreed service terms.</p>
-                      <p>Additional revisions, feature additions, or requests beyond the original project scope may increase project costs, extend delivery timelines, or require a revised agreement. Major scope changes may be treated as separate project phases.</p>
-                    </div>
+                      {/* Item 5 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">5</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Client Responsibilities</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          The client must provide all necessary content, credentials, branding assets, and approvals required for successful project execution.
+                        </p>
+                      </div>
 
-                    <hr className="border-white/5 my-4" />
+                      {/* Item 6 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">6</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Intellectual Property</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          All completed deliverables become the property of the client only after full payment clearance. H2T Technologies reserves the right to showcase completed work in its portfolio unless otherwise agreed.
+                        </p>
+                      </div>
 
-                    {/* Section 7 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">7.</span> Delivery Timelines
-                      </h4>
-                      <p>Estimated timelines are provided based on project scope and available information. H2T Technologies will make reasonable efforts to deliver projects on time but shall not be held liable for delays caused by client-side delays, third-party platform issues, hosting or server problems, unexpected technical complications, or force majeure events.</p>
-                    </div>
+                      {/* Item 7 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">7</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Website & Digital Services</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          H2T Technologies is not responsible for downtime, third-party hosting failures, API limitations, domain issues, or external platform policy changes affecting project performance.
+                        </p>
+                      </div>
 
-                    <hr className="border-white/5 my-4" />
+                      {/* Item 8 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">8</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Confidentiality</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          All sensitive business information shared with H2T Technologies will be handled with strict confidentiality and used solely for project purposes.
+                        </p>
+                      </div>
 
-                    {/* Section 8 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">8.</span> Third-Party Platforms & Services
-                      </h4>
-                      <p>Our services may involve third-party platforms including: Google, Meta Platforms, Instagram, Facebook, LinkedIn, YouTube, WhatsApp Business, hosting providers, and analytics tools.</p>
-                      <p className="text-gray-400 italic">H2T Technologies is not responsible for platform policy changes, account suspensions, advertising restrictions, algorithm updates, or third-party outages or technical failures.</p>
-                    </div>
+                      {/* Item 9 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">9</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Support & Maintenance</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          Post-delivery support or maintenance will be provided only if included in the project agreement or maintenance package.
+                        </p>
+                      </div>
 
-                    <hr className="border-white/5 my-4" />
+                      {/* Item 10 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">10</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Termination</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          H2T Technologies reserves the right to pause or terminate services in cases involving payment delays, misuse, illegal activities, or violation of agreed terms.
+                        </p>
+                      </div>
 
-                    {/* Section 9 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">9.</span> Limitation of Liability
-                      </h4>
-                      <p>H2T Technologies shall not be held liable for: indirect or consequential damages, business interruption or revenue loss, data loss caused by third-party services, security breaches outside our reasonable control, marketing performance fluctuations, or client misuse of delivered systems or services.</p>
-                      <p className="text-xs text-gray-500">All services are provided on a best-effort and commercially reasonable basis.</p>
-                    </div>
+                      {/* Item 11 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">11</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Limitation of Liability</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          H2T Technologies shall not be held liable for indirect losses, business interruption, data loss, or damages arising from the use of delivered digital products or services.
+                        </p>
+                      </div>
 
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 10 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">10.</span> Confidentiality
-                      </h4>
-                      <p>H2T Technologies respects client confidentiality and will take reasonable measures to protect sensitive business information shared during projects. Clients also agree not to publicly disclose confidential pricing, strategies, proprietary systems, or internal workflows without written consent.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 11 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">11.</span> Termination of Services
-                      </h4>
-                      <p>We reserve the right to suspend or terminate services if these terms are violated, fraudulent/illegal activity is detected, payments remain unpaid, abusive/inappropriate behavior occurs, or platform misuse damages company reputation. Clients may terminate services according to mutually agreed notice periods and contract terms.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 12 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">12.</span> Website Usage
-                      </h4>
-                      <p>Users agree not to: attempt unauthorized access to systems, copy or misuse website content, distribute harmful software or malicious code, or use our services for illegal or unethical activities. Violation may result in immediate service termination and legal action if necessary.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 13 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">13.</span> Modifications to Terms
-                      </h4>
-                      <p>H2T Technologies reserves the right to update or modify these Terms of Service at any time without prior notice. Updated versions will be published on this page with a revised effective date. Continued use of our services after updates constitutes acceptance of the revised terms.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 14 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">14.</span> Governing Law
-                      </h4>
-                      <p>These Terms of Service shall be governed and interpreted in accordance with applicable laws and regulations. Any disputes arising from these terms shall be subject to the appropriate legal jurisdiction.</p>
-                    </div>
-
-                    <hr className="border-white/5 my-4" />
-
-                    {/* Section 15 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-bold text-white flex items-center gap-2">
-                        <span className="text-h2t-red font-mono">15.</span> Contact Information
-                      </h4>
-                      <p>For questions regarding these Terms of Service, contact:</p>
-                      
-                      <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1 text-xs text-gray-400">
-                        <p className="font-bold text-white text-sm mb-1">H2T Technologies</p>
-                        <p>Email: <a href="mailto:support@h2t.tech" className="text-h2t-red hover:underline">support@h2t.tech</a></p>
-                        <p>Website: <a href="https://h2t.tech" target="_blank" rel="noopener noreferrer" className="text-h2t-red hover:underline">h2t.tech</a></p>
+                      {/* Item 12 */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-white text-black flex items-center justify-center font-bold text-xs rounded-sm shrink-0">12</div>
+                          <h3 className="text-sm font-bold text-white uppercase tracking-wider">Acceptance</h3>
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed pl-9">
+                          By proceeding with H2T Technologies services, the client acknowledges and agrees to these terms and conditions.
+                        </p>
                       </div>
                     </div>
                   </div>
                 )}
-
                 {/* Closing quote */}
                 <div className="pt-6 pb-2 border-t border-white/5 text-center">
                   <p className="italic text-xs text-gray-400 font-sans px-4">
