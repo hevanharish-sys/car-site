@@ -1,5 +1,24 @@
 import { motion } from 'framer-motion';
 import { ChevronRight, Play } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
+
+const headlineContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.18, delayChildren: 0.15 },
+  },
+};
+
+const headlineLine = {
+  hidden: { opacity: 0, y: 36, filter: 'blur(10px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
 
 export function Hero() {
   return (
@@ -19,57 +38,41 @@ export function Hero() {
       <div className="relative z-10 w-full px-6 md:pl-[30px] lg:pl-[40px] md:pr-0 pt-[40px]">
         <div className="text-left flex flex-col justify-center w-full max-w-[850px]">
           
-          {/* Desktop Logo (Visible above heading) */}
-          <motion.div
+          {/* Logo above heading (desktop) */}
+          <motion.a
+            href="#home"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-8 hidden md:flex flex-col"
+            className="mb-8 hidden md:block hover:opacity-90 transition-opacity"
           >
-            <div className="flex items-center gap-1 mb-1">
-              <span className="text-white text-5xl font-black italic tracking-tighter leading-none">H</span>
-              <span className="text-[#cc0000] text-5xl font-black italic tracking-tighter leading-none">2</span>
-              <span className="text-white text-5xl font-black italic tracking-tighter leading-none">T</span>
-            </div>
-            <div className="text-white text-[11px] tracking-[0.45em] font-medium mt-1.5 leading-none">
-              TECHNOLOGIES
-            </div>
-            <div className="flex items-center gap-2 mt-2">
-              <div className="h-[1px] w-4 bg-[#cc0000]"></div>
-              <div className="text-[#cc0000] text-[8px] uppercase tracking-widest leading-none">Innovate Beyond Limits</div>
-              <div className="h-[1px] w-4 bg-[#cc0000]"></div>
-            </div>
-          </motion.div>
+            <BrandLogo className="h-[80px] lg:h-[96px] w-auto object-contain" />
+          </motion.a>
 
           {/* Main Typography */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1 }}
-            className="text-[38px] sm:text-[48px] lg:text-[58px] font-[800] tracking-tight m-0 leading-[1.1] sm:leading-[1.05] text-white"
+            variants={headlineContainer}
+            initial="hidden"
+            animate="visible"
+            className="text-[32px] sm:text-[42px] lg:text-[54px] font-[800] tracking-tight m-0 leading-[1.15] sm:leading-[1.1] text-white max-w-[640px]"
           >
-            <span className="block sm:inline sm:whitespace-nowrap">We Build. </span>
-            <span className="block sm:inline sm:whitespace-nowrap">We Automate.</span><br className="hidden sm:inline" />
-            <span className="block sm:inline sm:whitespace-nowrap">We <span className="text-[#cc0000] text-glow select-none">Grow</span> </span>
-            <span className="block sm:inline sm:whitespace-nowrap">Your Business.</span>
+            <motion.span variants={headlineLine} className="block">
+              We automate.
+            </motion.span>
+            <motion.span variants={headlineLine} className="block">
+              We{' '}
+              <span className="text-[#cc0000] text-glow">generate</span>
+              {' '}leads.
+            </motion.span>
+            <motion.span variants={headlineLine} className="block">
+              We scale revenue.
+            </motion.span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="text-[15px] md:text-[18px] leading-[1.6] mt-[24px] w-full max-w-[480px]"
-            style={{ color: "rgba(255,255,255,0.78)" }}
-          >
-            Powerful technology and marketing solutions<br className="hidden sm:block" />
-            that help businesses attract, engage,<br className="hidden sm:block" />
-            and convert more customers.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.75 }}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[16px] w-full mt-[32px]"
           >
             <button

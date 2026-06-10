@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   onOpenPrivacy: (tab: 'privacy' | 'terms') => void;
@@ -11,10 +12,16 @@ export function Footer({ onOpenPrivacy, onOpenVision }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="flex-shrink-0">
-            <a href="#" className="block hover:opacity-85 transition-opacity">
-              <img src="/image.png" alt="H2T Technologies Logo" className="h-8 sm:h-9 w-auto object-contain" />
+          <div className="flex items-center gap-4 sm:gap-5 flex-shrink-0">
+            <a href="#home" className="block hover:opacity-85 transition-opacity">
+              <BrandLogo className="h-8 sm:h-9 w-auto object-contain" />
             </a>
+            <div className="h-8 sm:h-9 w-px bg-white/10" aria-hidden="true" />
+            <img
+              src="/MSME H2T .jpeg"
+              alt="Ministry of Micro, Small and Medium Enterprises - Government of India"
+              className="h-10 sm:h-11 w-auto object-contain bg-white rounded-md px-1 py-0.5"
+            />
           </div>
 
           <div className="flex items-center gap-4">

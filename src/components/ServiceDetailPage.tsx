@@ -1,6 +1,21 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check, Sparkles, Zap, Shield } from 'lucide-react';
+import { ArrowLeft, Check, ChevronRight } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 import { ServiceContact, type ServiceContactConfig } from './ServiceContact';
+
+function ServiceTitle({ title }: { title: string }) {
+  const words = title.split(' ');
+  const accent = words.pop() ?? '';
+  const main = words.join(' ');
+
+  return (
+    <>
+      {main && <span className="text-white">{main} </span>}
+      <span className="text-h2t-red">{accent}</span>
+    </>
+  );
+}
 
 export interface PricingTier {
   name: string;
@@ -18,6 +33,7 @@ export interface ServiceDetailData {
   longDescription: string;
   features: { title: string; desc: string }[];
   pricing: PricingTier[];
+  pricingNote?: { title: string; description: string };
 }
 
 export const servicesData: Record<string, ServiceDetailData> = {
@@ -35,45 +51,63 @@ export const servicesData: Record<string, ServiceDetailData> = {
     pricing: [
       {
         name: 'Growth Landing',
-        price: '₹15,000+',
-        description: 'Perfect for startups and product launches looking for premium positioning.',
+        price: '₹9,999+',
+        description: 'For startups, personal brands, traders, coaches, and local businesses.',
         features: [
-          'High-converting single/landing page',
-          'Cinematic design aesthetics',
-          'Fully mobile responsive',
-          'Basic SEO & analytics setup',
-          'Contact & lead capture form',
-          '3 rounds of design revisions'
-        ]
-      },
-      {
-        name: 'Corporate Scale',
-        price: '₹35,000+',
-        description: 'For growing businesses seeking an authority-building multi-page digital platform.',
-        features: [
-          'Up to 6 fully custom pages',
-          'Advanced micro-animations',
-          'CMS integration setup',
-          'Complete on-page SEO optimization',
-          'Custom graphics & UI elements',
-          '1 month of priority support'
+          '1 Landing Page',
+          'Mobile Responsive Design',
+          'Contact Form',
+          'WhatsApp Integration',
+          'Basic SEO Setup',
+          'Social Media Links',
+          'Fast Loading Pages',
+          '2 Revisions',
+          '7 Days Support',
         ],
-        popular: true
       },
       {
-        name: 'Enterprise Web App',
-        price: '₹75,000+',
-        description: 'Bespoke web applications with advanced custom operations and database structures.',
+        name: 'Business Website',
+        price: '₹19,999+',
+        description: 'For businesses looking to build trust and generate leads.',
         features: [
-          'Unlimited modern pages',
-          'Bespoke user dashboard & portal',
-          'API integrations & payments',
-          'Real-time database systems',
-          'Advanced animations & heavy assets',
-          '3 months of dedicated dev support'
-        ]
-      }
-    ]
+          'Up to 5 Pages',
+          'Custom UI Design',
+          'Mobile Responsive Design',
+          'Contact & Lead Forms',
+          'WhatsApp Integration',
+          'Basic SEO Setup',
+          'Google Maps Integration',
+          'Social Media Integration',
+          'Blog Setup (Optional)',
+          '3 Revisions',
+          '15 Days Support',
+        ],
+        popular: true,
+      },
+      {
+        name: 'Custom Website',
+        price: '₹39,999+',
+        description: 'For businesses requiring advanced features and scalability.',
+        features: [
+          'Up to 10 Pages',
+          'Custom UI/UX Design',
+          'Admin Dashboard',
+          'User Login & Registration',
+          'Database Integration',
+          'API Integrations',
+          'Contact & Lead Management',
+          'Advanced Forms',
+          'Basic Analytics Setup',
+          '5 Revisions',
+          '30 Days Support',
+        ],
+      },
+    ],
+    pricingNote: {
+      title: 'Need something custom?',
+      description:
+        'Every project is unique. Contact us for a tailored solution based on your business requirements.',
+    },
   },
   'ai-automation': {
     title: 'AI Business Automation',
@@ -130,10 +164,10 @@ export const servicesData: Record<string, ServiceDetailData> = {
     ]
   },
   'ai-chatbots': {
-    title: 'AI Chatbots & WhatsApp',
-    tagline: '24/7 intelligent conversational agents that qualify leads and drive sales.',
-    description: '24/7 intelligent chatbot systems for websites, WhatsApp, Instagram, and customer support.',
-    longDescription: 'Customers demand instant responses. We build conversational AI that never sleeps, qualifying leads, answering complex FAQs, and booking appointments automatically via WhatsApp, Instagram, and your website. Experience a system that handles customer service like a human, but at machine speed.',
+    title: 'AI Chatbots & WhatsApp Automation',
+    tagline: 'Deploy intelligent chat experiences that capture leads, answer questions, and engage customers 24/7.',
+    description: 'Intelligent chatbots for WhatsApp and your website — built to capture leads and automate support.',
+    longDescription: 'We build WhatsApp and AI chatbots that answer FAQs, collect leads, and qualify prospects automatically — so your business stays responsive even when your team is offline.',
     features: [
       { title: 'Omnichannel Presence', desc: 'Unified AI bots across WhatsApp, Web, FB, and Instagram.' },
       { title: 'Intelligent Lead Capture', desc: 'Automatically gather details and push them straight to your CRM.' },
@@ -142,46 +176,39 @@ export const servicesData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       {
-        name: 'Starter Bot',
-        price: '₹12,000+',
-        description: 'Perfect for small businesses wanting automated FAQ answering and lead collection.',
+        name: 'WhatsApp Starter',
+        price: '₹9,999+',
+        description: 'For small businesses looking to automate customer inquiries and lead collection.',
         features: [
-          'Official WhatsApp API Setup',
-          'Custom FAQ Chatbot sequence',
-          'Instant Lead notifications',
-          'Basic Google Sheets Sync',
-          '1 business number connection',
-          'Standard prompt engineering'
-        ]
-      },
-      {
-        name: 'Conversational Pro',
-        price: '₹25,000+',
-        description: 'For brands looking to run automated broadcast campaigns and deep CRM sync.',
-        features: [
-          'Omnichannel Bot (Web + WA)',
-          'Broadcast outreach capabilities',
-          'Advanced conversational AI logic',
-          'Full HubSpot/CRM webhooks',
-          'Multi-agent chat inbox setup',
-          'Monthly performance tweaks'
+          'WhatsApp Business Integration',
+          'FAQ Chatbot Setup',
+          'Up to 20 Questions & Answers',
+          'Lead Collection Flow',
+          'Google Sheets Integration',
+          'Instant Lead Notifications',
+          'Business Hours Auto-Reply',
+          '7 Days Support',
         ],
-        popular: true
       },
       {
-        name: 'Enterprise Systems',
-        price: '₹55,000+',
-        description: 'Custom conversational pipelines, automated client portals, and massive triggers.',
+        name: 'AI Chatbot Pro',
+        price: '₹24,999+',
+        description: 'For businesses looking to automate sales, support, and lead qualification.',
         features: [
-          'Bespoke API chatbot integrations',
-          'Mass scale broadcast automation',
-          'Full internal team handoff rules',
-          'Complex calendar & scheduling loop',
-          'Dedicated account manager',
-          'Priority SLA Dev Support'
-        ]
-      }
-    ]
+          'Everything in Starter',
+          'AI-Powered Responses',
+          'Website + WhatsApp Chatbot',
+          'Lead Qualification Flow',
+          'Appointment Booking Flow',
+          'CRM Integration',
+          'Custom Conversation Design',
+          'Knowledge Base Training',
+          'Analytics Setup',
+          '30 Days Support',
+        ],
+        popular: true,
+      },
+    ],
   },
   'social-branding': {
     title: 'Social Media & Branding',
@@ -196,49 +223,51 @@ export const servicesData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       {
-        name: 'Brand Growth',
-        price: '₹8,000',
-        period: '/mo',
-        description: 'Establish a consistent, professional baseline across your social channels.',
+        name: 'Brand Starter',
+        price: '₹7,999',
+        period: '/month',
+        description: 'Perfect for businesses building their online presence.',
         features: [
-          '12 Custom Static Posts / month',
-          'Basic account management',
-          'Hashtag & keyword strategy',
-          'Monthly analytics report',
-          'Profile optimization',
-          'Standard community engagement'
-        ]
-      },
-      {
-        name: 'Creator Scale',
-        price: '₹18,000',
-        period: '/mo',
-        description: 'Aggressive growth system incorporating high-retention short-form video.',
-        features: [
-          '8 Premium Edited Reels / month',
-          '15 Custom Graphic Posts',
-          'Advanced kinetic typography',
-          'Custom brand sound design',
-          'A/B tested visual hooks',
-          'Bi-weekly strategy sessions'
+          '12 Social Media Posts / Month',
+          'Basic Graphic Design',
+          'Caption Writing',
+          'Hashtag Research',
+          'Profile Optimization',
+          'Monthly Performance Report',
         ],
-        popular: true
       },
       {
-        name: 'Omni Dominance',
-        price: '₹35,000',
-        period: '/mo',
-        description: 'Full-suite digital PR, premium thought leadership, and dedicated channel growth.',
+        name: 'Growth Branding',
+        price: '₹14,999',
+        period: '/month',
+        description: 'For businesses focused on audience growth and engagement.',
         features: [
-          '15 Premium Edited Reels / month',
-          'Daily channel posting & management',
-          'Full Brand Identity revamp',
-          'Proactive community networking',
-          'Bespoke graphical carousels',
-          'Dedicated account strategist'
-        ]
-      }
-    ]
+          '20 Social Media Posts / Month',
+          '4 Reels / Month',
+          'Premium Graphic Designs',
+          'Caption & Content Strategy',
+          'Hashtag Research',
+          'Profile Management',
+          'Monthly Analytics Report',
+        ],
+        popular: true,
+      },
+      {
+        name: 'Premium Brand Management',
+        price: '₹24,999',
+        period: '/month',
+        description: 'For brands seeking consistent content and stronger visibility.',
+        features: [
+          '20 Social Media Posts / Month',
+          '8 Reels / Month',
+          'Premium Graphic Designs',
+          'Content Calendar Planning',
+          'Profile Management',
+          'Monthly Strategy Call',
+          'Priority Support',
+        ],
+      },
+    ],
   },
   'seo': {
     title: 'SEO & Digital Visibility',
@@ -253,49 +282,51 @@ export const servicesData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       {
-        name: 'Local Visibility',
-        price: '₹10,000',
-        period: '/mo',
-        description: 'Dominate regional search parameters and secure high-value local inquiries.',
+        name: 'Local SEO',
+        price: '₹7,999',
+        period: '/month',
+        description: 'Perfect for local businesses looking to improve visibility.',
         features: [
-          'Google Business Profile setup',
-          'Local citation building (20+)',
-          'Targeting up to 10 local keywords',
-          'On-page title & meta optimization',
-          'Monthly local performance report',
-          'Basic speed optimization'
-        ]
-      },
-      {
-        name: 'Organic Authority',
-        price: '₹22,000',
-        period: '/mo',
-        description: 'National and global optimization to rank for massive transactional terms.',
-        features: [
-          'Full technical SEO audit & fix',
-          'Targeting up to 25 national keywords',
-          '4 optimized blog posts / month',
-          'High-domain backlinks acquisition',
-          'Complete schema markup injection',
-          'Quarterly competitor audit'
+          'Google Business Profile Optimization',
+          'Local Keyword Research',
+          'On-Page SEO Optimization',
+          'Meta Titles & Descriptions',
+          'Monthly SEO Report',
+          'Basic Technical SEO Check',
         ],
-        popular: true
       },
       {
-        name: 'Market Leader',
-        price: '₹45,000',
-        period: '/mo',
-        description: 'Aggressive SEO dominance to out-rank competitive giants and capture market share.',
+        name: 'Growth SEO',
+        price: '₹14,999',
+        period: '/month',
+        description: 'For businesses looking to generate leads through search.',
         features: [
-          'Unlimited targeted keywords focus',
-          'Advanced technical architecture',
-          '8 premium SEO articles / month',
-          'Aggressive PR & editorial backlinks',
-          'Conversion rate optimization (CRO)',
-          'Dedicated SEO account head'
-        ]
-      }
-    ]
+          'Everything in Local SEO',
+          'Up to 15 Target Keywords',
+          'Technical SEO Optimization',
+          'Competitor Analysis',
+          'Content Recommendations',
+          'Internal Linking Optimization',
+          'Monthly Performance Report',
+          'Priority Support',
+        ],
+        popular: true,
+      },
+      {
+        name: 'SEO Authority',
+        price: '₹24,999',
+        period: '/month',
+        description: 'For businesses ready to dominate search and scale organic traffic.',
+        features: [
+          'Everything in Growth SEO',
+          'Up to 30 Keywords',
+          'Monthly SEO Content Strategy',
+          'Advanced Technical SEO',
+          'Competitor Tracking',
+          'Priority Support',
+        ],
+      },
+    ],
   },
   'digital-marketing': {
     title: 'Digital Marketing & Ads',
@@ -311,48 +342,54 @@ export const servicesData: Record<string, ServiceDetailData> = {
     pricing: [
       {
         name: 'Ad Launch',
-        price: '₹15,000',
-        period: '/mo',
-        description: 'Establish initial ad campaigns to build momentum and generate immediate leads.',
+        price: '₹9,999',
+        period: '/month',
+        description: 'Perfect for businesses running their first ad campaigns.',
         features: [
-          'Meta or Google Ads Setup',
-          'Targeting & audience research',
-          'Ad copywriting & setup',
-          'Basic conversion tracking',
-          'Budget management (up to ₹1L)',
-          'Monthly performance report'
-        ]
-      },
-      {
-        name: 'Growth Scale',
-        price: '₹30,000',
-        period: '/mo',
-        description: 'Comprehensive multi-step campaign setup with advanced retargeting.',
-        features: [
-          'Meta + Google Search campaigns',
-          'Advanced social funnels (Warm/Cold)',
-          'Custom graphic & video creatives',
-          'Server-side CAPI integration',
-          'Budget management (up to ₹5L)',
-          'Bi-weekly strategy calls'
+          'Meta Ads or Google Ads Management',
+          'Audience Research',
+          'Campaign Setup',
+          'Ad Copywriting',
+          'Basic Conversion Tracking',
+          'Monthly Performance Report',
         ],
-        popular: true
       },
       {
-        name: 'Omni Dominance',
-        price: '₹60,000',
-        period: '/mo',
-        description: 'Full omni-funnel dominance. Visual creatives, constant optimization, high scale.',
+        name: 'Growth Ads',
+        price: '₹19,999',
+        period: '/month',
+        description: 'For businesses focused on generating leads and sales.',
         features: [
-          'Omnichannel (Meta, Google, YT)',
-          'High-budget creative scaling',
-          'Email & Funnel Marketing integration',
-          'Complete landing page funnel builds',
-          'Unlimited budget scale oversight',
-          '24/7 campaign tracking & bid scaling'
-        ]
-      }
-    ]
+          'Meta Ads + Google Ads Management',
+          'Advanced Audience Targeting',
+          'Retargeting Campaign Setup',
+          'Conversion Tracking Setup',
+          'Creative Strategy Guidance',
+          'Bi-Weekly Optimization',
+          'Monthly Performance Report',
+        ],
+        popular: true,
+      },
+      {
+        name: 'Scale Ads',
+        price: '₹34,999',
+        period: '/month',
+        description: 'For businesses looking to scale advertising efforts.',
+        features: [
+          'Everything in Growth Ads',
+          'Multi-Campaign Management',
+          'Funnel Optimization',
+          'Landing Page Recommendations',
+          'Advanced Reporting Dashboard',
+          'Weekly Strategy Calls',
+          'Priority Support',
+        ],
+      },
+    ],
+    pricingNote: {
+      title: 'Important Note',
+      description: 'Ad Spend is separate and paid directly to Meta/Google.',
+    },
   },
   'ecommerce': {
     title: 'Ecommerce Growth Solutions',
@@ -511,6 +548,22 @@ interface ServiceDetailPageProps {
 
 export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps) {
   const data = servicesData[serviceKey];
+  const [selectedPlan, setSelectedPlan] = useState<{
+    name: string;
+    price: string;
+    period?: string;
+  } | null>(null);
+
+  const handleSelectPlan = (tier: PricingTier) => {
+    setSelectedPlan({
+      name: tier.name,
+      price: tier.price,
+      period: tier.period,
+    });
+    setTimeout(() => {
+      document.getElementById('service-contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  };
 
   if (!data) {
     return (
@@ -524,204 +577,219 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-red-600 selection:text-white pb-24 relative overflow-hidden">
-      {/* Background Ambience */}
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-h2t-red selection:text-white pb-24 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-0 w-full h-[600px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0wIDYwaDYwTTAgMGg2ME02MCAwdjYwTTAgMHY2MCIvPjwvZz48L3N2Zz4=')] opacity-20" />
-        <div className={`absolute top-0 left-1/4 w-[500px] h-[500px] bg-red-950/10 blur-[150px] rounded-full`} />
-        <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-red-900/5 blur-[150px] rounded-full" />
+        <div className="absolute top-0 right-0 w-[45%] h-[45%] bg-red-900/10 blur-[140px] rounded-full" />
+        <div className="absolute bottom-1/4 left-0 w-[30%] h-[30%] bg-red-950/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* Top Navbar */}
-      <nav className="relative z-10 max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
+      {/* Top bar */}
+      <nav className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 group"
+          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           Back to Services
         </button>
-        <span className="text-xl font-bold tracking-tighter">
-          H2T<span className="text-h2t-red">.</span>
-        </span>
+        <BrandLogo className="h-8 w-auto object-contain" />
       </nav>
 
-      {/* Main Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-        
-        {/* Left Side: Information */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-h2t-red/10 border border-h2t-red/30 mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-h2t-red" />
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-h2t-red">
-                Premium Services
-              </span>
-            </div>
+      {/* Hero */}
+      <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-16 sm:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl"
+        >
+          <p className="text-h2t-red text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase mb-5">
+            H2T Service
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight leading-[1.1]">
+            <ServiceTitle title={data.title} />
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-300 font-light mt-6 leading-relaxed">
+            {data.tagline}
+          </p>
+          <p className="text-sm sm:text-base text-gray-400 font-light mt-5 leading-relaxed max-w-2xl">
+            {data.longDescription}
+          </p>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-              {data.title.split(' ').map((word, i) => (
-                <span key={i} className={i === data.title.split(' ').length - 1 ? 'text-h2t-red' : 'text-white'}>
-                  {word}{' '}
-                </span>
-              ))}
-            </h1>
-
-            <p className="text-lg md:text-xl font-light text-gray-300 mb-8 leading-relaxed">
-              {data.tagline}
-            </p>
-
-            <p className="text-sm md:text-base font-light text-gray-400 leading-relaxed mb-12 border-l-2 border-h2t-red/50 pl-6">
-              {data.longDescription}
-            </p>
-          </motion.div>
-
-          {/* Key Deliverables Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-            {data.features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-                className="p-5 rounded-2xl bg-[#0a0a0a] border border-white/5 hover:border-h2t-red/30 transition-colors"
-              >
-                <div className="w-8 h-8 rounded-lg bg-h2t-red/10 border border-h2t-red/20 flex items-center justify-center text-h2t-red mb-4">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <h3 className="text-white font-bold text-[15px] mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-xs font-light leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Side: Showcase Element */}
-        <div className="lg:col-span-5 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="w-full relative aspect-[4/3] rounded-[2rem] p-[1px] bg-gradient-to-b from-h2t-red/20 to-transparent overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-[#080808] rounded-[2rem] overflow-hidden flex flex-col p-8 justify-between border border-h2t-red/10 shadow-[inset_0_0_60px_rgba(255,26,26,0.03)]">
-              {/* Top Details */}
-              <div className="flex justify-between items-start">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-h2t-red" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-900/60" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                </div>
-                <div className="text-[10px] text-gray-500 font-mono">STATUS // LIVE</div>
-              </div>
-
-              {/* Middle Core Statement */}
-              <div className="my-auto py-6">
-                <h4 className="text-2xl font-bold text-white mb-4">Result-Driven Delivery System</h4>
-                <p className="text-gray-400 text-xs font-light leading-relaxed">
-                  We don’t believe in bloated processes or fluff. Every campaign, website, or automation we construct is focused laser-sharp on driving real, tangible revenue growth.
-                </p>
-              </div>
-
-              {/* Bottom Row Trust Badges */}
-              <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                <div className="flex items-center gap-2 text-gray-400 text-[10px] uppercase font-bold tracking-widest">
-                  <Shield className="w-4 h-4 text-h2t-red" />
-                  Verified System
-                </div>
-                <div className="flex items-center gap-1 text-gray-500 text-[10px] font-mono">
-                  SECURE SSL // 256 BIT
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Pricing Header */}
-      <div className="max-w-7xl mx-auto px-6 mt-28 mb-16 text-center">
-        <div className="flex items-center justify-center gap-4 mb-4">
-          <div className="h-[1px] w-8 bg-h2t-red/50" />
-          <span className="text-h2t-red text-xs font-bold tracking-[0.2em] uppercase">Flexible Rates</span>
-          <div className="h-[1px] w-8 bg-h2t-red/50" />
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold">Transparent Tiers & Plans</h2>
-        <p className="text-sm font-light text-gray-400 mt-3 max-w-lg mx-auto">
-          Choose a dynamic pricing model customized perfectly for your business growth timeline.
-        </p>
-      </div>
-
-      {/* Pricing Cards Grid */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {data.pricing.map((tier, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 ${
-              tier.popular
-                ? 'bg-gradient-to-b from-red-950/30 via-[#080808] to-black border-h2t-red/50 shadow-[0_0_30px_rgba(255,26,26,0.15)]'
-                : 'bg-[#080808] border-white/5 hover:border-h2t-red/20'
-            } border h-full`}
-          >
-            {tier.popular && (
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-h2t-red text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-full uppercase shadow-[0_0_15px_rgba(255,26,26,0.5)]">
-                Most Popular
-              </span>
-            )}
-
-            <div className="mb-6">
-              <h3 className="text-white text-lg font-bold tracking-wide">{tier.name}</h3>
-              <p className="text-gray-400 text-xs font-light mt-2 min-h-[40px] leading-relaxed">
-                {tier.description}
-              </p>
-            </div>
-
-            <div className="flex items-baseline gap-1 mb-8 pb-6 border-b border-white/5">
-              <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">{tier.price}</span>
-              {tier.period && <span className="text-gray-500 text-sm font-light">{tier.period}</span>}
-            </div>
-
-            {/* Feature List */}
-            <ul className="flex flex-col gap-4 mb-8 flex-grow">
-              {tier.features.map((feat, fIdx) => (
-                <li key={fIdx} className="flex items-start gap-3">
-                  <div className="w-4 h-4 rounded-full bg-h2t-red/10 flex items-center justify-center text-h2t-red mt-0.5 shrink-0">
-                    <Check className="w-2.5 h-2.5" />
-                  </div>
-                  <span className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed">{feat}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Call to Action Button */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+            <a
+              href="#pricing"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-h2t-red hover:bg-red-600 text-white text-sm font-medium transition-all shadow-[0_0_15px_rgba(204,0,0,0.25)] active:scale-95"
+            >
+              View Plans
+              <ChevronRight className="w-4 h-4" />
+            </a>
             <a
               href="#service-contact"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('service-contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className={`w-full text-center py-4 rounded-xl text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-                tier.popular
-                  ? 'bg-h2t-red hover:bg-red-600 text-white shadow-[0_0_20px_rgba(255,26,26,0.35)]'
-                  : 'bg-white/5 hover:bg-h2t-red/10 hover:border hover:border-h2t-red/20 text-white'
-              }`}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 text-white text-sm font-medium hover:bg-white/5 hover:border-h2t-red/40 transition-all active:scale-95"
             >
-              Get Started
+              Get a Quote
             </a>
-          </motion.div>
-        ))}
-      </div>
+          </div>
+        </motion.div>
+
+        {/* What's included */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="mt-16 sm:mt-20"
+        >
+          <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500 mb-6">
+            What&apos;s Included
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {data.features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="bg-[#0c0c0c] border border-white/[0.06] hover:border-h2t-red/30 p-5 sm:p-6 transition-colors duration-300"
+              >
+                <span className="text-h2t-red text-xs font-bold tabular-nums">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-white font-bold text-sm sm:text-base mt-3 mb-2 tracking-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-500 text-xs sm:text-sm font-light leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-8 pb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-10 sm:mb-12"
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+            Pricing <span className="text-h2t-red">Plans</span>
+          </h2>
+          <p className="text-gray-400 text-sm font-light mt-3 max-w-xl">
+            Clear packages built around real deliverables. Pick what fits your stage — scale anytime.
+          </p>
+        </motion.div>
+
+        <div
+          className={`grid grid-cols-1 gap-4 sm:gap-5 pt-2 ${
+            data.pricing.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'
+          }`}
+        >
+          {data.pricing.map((tier, idx) => {
+            const cardContent = (
+              <>
+                <h3 className="text-white text-base sm:text-lg font-bold tracking-tight">{tier.name}</h3>
+                <p className="text-gray-500 text-xs sm:text-sm font-light mt-2 min-h-[40px] leading-relaxed">
+                  {tier.description}
+                </p>
+
+                <div className="flex items-baseline gap-1 mt-6 mb-6 pb-6 border-b border-white/[0.06]">
+                  <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                    {tier.price}
+                  </span>
+                  {tier.period && (
+                    <span className="text-gray-500 text-sm font-light">{tier.period}</span>
+                  )}
+                </div>
+
+                <ul className="flex flex-col gap-3 mb-8 flex-grow">
+                  {tier.features.map((feat, fIdx) => (
+                    <li key={fIdx} className="flex items-start gap-2.5">
+                      <Check className="w-3.5 h-3.5 text-h2t-red mt-0.5 shrink-0" />
+                      <span className="text-gray-400 text-xs sm:text-sm font-light leading-relaxed">
+                        {feat}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectPlan(tier)}
+                  className={`relative w-full text-center py-3.5 rounded-xl text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+                    tier.popular
+                      ? 'popular-pricing-btn bg-h2t-red hover:bg-red-600 text-white shadow-[0_0_20px_rgba(255,26,26,0.35)]'
+                      : 'border border-white/10 hover:border-h2t-red/40 hover:bg-h2t-red/5 text-white'
+                  }`}
+                >
+                  <span className="relative z-[1]">Select Plan</span>
+                </button>
+              </>
+            );
+
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className={`relative ${tier.popular ? 'pt-4 overflow-visible' : ''}`}
+              >
+                {tier.popular && (
+                  <span className="absolute top-0 left-6 z-20 bg-h2t-red text-white text-[9px] font-bold tracking-widest px-2.5 py-1 uppercase rounded-sm shadow-[0_0_12px_rgba(255,26,26,0.5)]">
+                    Most Popular
+                  </span>
+                )}
+                <div
+                  className={
+                    tier.popular
+                      ? 'popular-pricing-border shadow-[0_0_28px_rgba(255,26,26,0.15)]'
+                      : ''
+                  }
+                >
+                  <div
+                    className={`relative flex flex-col p-6 sm:p-7 h-full transition-all duration-300 ${
+                      tier.popular
+                        ? 'popular-pricing-inner'
+                        : 'bg-[#0a0a0a] border border-white/[0.06] hover:border-h2t-red/25 rounded-xl'
+                    }`}
+                  >
+                    {cardContent}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {data.pricingNote && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="max-w-2xl mx-auto px-6 mt-12 sm:mt-16 text-center"
+        >
+          <h3 className="text-white text-lg sm:text-xl font-bold mb-2">{data.pricingNote.title}</h3>
+          <p className="text-gray-400 text-sm font-light leading-relaxed">{data.pricingNote.description}</p>
+        </motion.div>
+      )}
 
       {serviceContactByKey[serviceKey] && (
         <ServiceContact
           serviceName={data.title}
           contact={serviceContactByKey[serviceKey]}
+          selectedPlan={selectedPlan}
+          onClearPlan={() => setSelectedPlan(null)}
         />
       )}
     </div>

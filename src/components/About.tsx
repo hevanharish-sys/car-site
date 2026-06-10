@@ -5,131 +5,149 @@ const team = [
     name: 'Hareesh VN',
     role: 'Founder & CEO',
     image: '/image-fc785e2c-1a9e-44c8-9e39-951bee541211.png',
+    objectPosition: '50% 18%',
   },
   {
     name: 'Hevan Harish LM',
-    role: 'Chief Technology Officer (CTO)',
-    image: '/IMG_20251026_181737_516.webp',
+    role: 'Chief Technology Officer',
+    image: '/Harish_xtrme.png',
+    objectPosition: '50% 20%',
   },
   {
     name: 'Ramkishore M',
     role: 'Digital Marketing Specialist',
-    image: '/H2T2.jpeg',
+    image: '/kishore cdu.jpeg',
+    objectPosition: '50% 15%',
   },
   {
     name: 'Balajivasan M',
     role: 'Marketing Head',
     image: '/H2T .jpeg',
+    objectPosition: '50% 12%',
   },
   {
     name: 'Jaswanth Reddy M',
     role: 'Video Editor & Marketing Executive',
-    image: '/image-019646c1-4d61-4a22-b249-679e45c6b8a5.png',
+    image: '/jaswant reddy cdu.jpeg',
+    objectPosition: '50% 15%',
   },
 ];
 
-function TeamPhoto({
-  src,
-  alt,
-  className,
-  delay = 0,
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: i * 0.08,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  }),
+};
+
+const headerFade = {
+  hidden: { opacity: 0, y: 48 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
+function TeamCard({
+  member,
+  index,
 }: {
-  src: string;
-  alt: string;
-  className?: string;
-  delay?: number;
+  member: (typeof team)[0];
+  index: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay }}
-      className={`rounded-2xl overflow-hidden ${className}`}
+    <motion.article
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      variants={fadeUp}
+      className="group relative flex flex-col rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.08] hover:border-h2t-red/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,26,26,0.12)]"
     >
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
-      />
-    </motion.div>
+      {/* Photo */}
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#0c0c0c]">
+        <div className="absolute inset-0 bg-gradient-to-b from-h2t-red/10 via-transparent to-transparent z-[1] pointer-events-none" />
+        <img
+          src={member.image}
+          alt={member.name}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+          style={{ objectPosition: member.objectPosition }}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-[1]" />
+        <div className="absolute top-0 left-0 w-full h-[3px] bg-h2t-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 z-[2]" />
+      </div>
+
+      {/* Info */}
+      <div className="relative p-5 sm:p-6 flex-1 flex flex-col">
+        <div className="w-8 h-[2px] bg-h2t-red mb-4 rounded-full" />
+        <h3 className="text-white font-semibold text-base sm:text-lg leading-tight tracking-tight">
+          {member.name}
+        </h3>
+        <p className="text-gray-500 text-[11px] sm:text-xs font-medium uppercase tracking-[0.12em] mt-2 leading-relaxed">
+          {member.role}
+        </p>
+      </div>
+    </motion.article>
   );
 }
 
 export function About() {
   return (
-    <section id="about" className="py-24 sm:py-32 bg-[#050505]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-3 mb-14 sm:mb-20"
-        >
-          <img src="/image.png" alt="H2T" className="h-7 w-auto object-contain opacity-90" />
-          <span className="text-white text-lg font-bold tracking-tight">
-            H2T<span className="text-h2t-red">.</span>
-          </span>
-        </motion.div>
+    <section id="about" className="py-24 sm:py-32 bg-[#050505] relative overflow-hidden">
+      <div className="absolute top-0 right-1/4 w-[45%] h-[45%] bg-red-900/10 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-h2t-red/5 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          {/* Staggered photo mosaic */}
-          <div className="lg:col-span-7 grid grid-cols-3 gap-3 sm:gap-4">
-            <TeamPhoto
-              src={team[0].image}
-              alt={team[0].name}
-              className="col-start-1 row-start-1 row-span-2 h-[280px] sm:h-[360px] lg:h-[420px]"
-            />
-            <TeamPhoto
-              src={team[1].image}
-              alt={team[1].name}
-              delay={0.05}
-              className="col-start-2 row-start-1 h-[130px] sm:h-[170px] lg:h-[200px]"
-            />
-            <TeamPhoto
-              src={team[3].image}
-              alt={team[3].name}
-              delay={0.1}
-              className="col-start-2 row-start-2 h-[130px] sm:h-[170px] lg:h-[200px]"
-            />
-            <TeamPhoto
-              src={team[2].image}
-              alt={team[2].name}
-              delay={0.15}
-              className="col-start-3 row-start-1 mt-10 sm:mt-14 h-[130px] sm:h-[170px] lg:h-[200px]"
-            />
-            <TeamPhoto
-              src={team[4].image}
-              alt={team[4].name}
-              delay={0.2}
-              className="col-start-3 row-start-2 h-[130px] sm:h-[170px] lg:h-[200px]"
-            />
-          </div>
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 mb-16 sm:mb-20 lg:mb-24 items-end">
+          <motion.header
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            variants={headerFade}
+          >
+            <p className="text-h2t-red text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase mb-4 sm:mb-6">
+              Who we are
+            </p>
+            <h2 className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
+              About
+            </h2>
+            <div className="flex items-center gap-4 sm:gap-5 mt-1 sm:mt-2">
+              <span className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
+              <span className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
+                H2T
+              </span>
+            </div>
+          </motion.header>
 
-          {/* Minimal team list */}
-          <div className="lg:col-span-5 flex flex-col justify-center gap-10 sm:gap-12 lg:py-6">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="flex items-start gap-4"
-              >
-                <span className="w-8 h-3 rounded-full bg-h2t-red/80 shrink-0 mt-2.5" />
-                <div>
-                  <h3 className="text-white text-lg sm:text-xl font-bold tracking-tight">
-                    {member.name}
-                  </h3>
-                  <p className="text-gray-500 text-[11px] sm:text-xs font-medium uppercase tracking-[0.15em] mt-1.5">
-                    {member.role}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:max-w-sm lg:pb-2"
+          >
+            <div className="hidden lg:block w-12 h-[2px] bg-h2t-red mb-6 ml-auto" />
+            <p className="text-gray-400 text-sm sm:text-base font-light leading-relaxed lg:text-right">
+              Builders, strategists, and creators helping businesses automate, scale,
+              and grow through technology and digital strategy.
+            </p>
+          </motion.div>
         </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
+          {team.map((member, index) => (
+            <TeamCard key={member.name} member={member} index={index} />
+          ))}
+        </div>
+
       </div>
     </section>
   );

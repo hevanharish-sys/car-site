@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MessageCircle, Send, User, Edit3, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MessageCircle, Send, User, Edit3, Loader2, CheckCircle2, AlertCircle, X, Package } from 'lucide-react';
+
+export interface SelectedPlan {
+  name: string;
+  price: string;
+  period?: string;
+}
 
 export interface ServiceContactConfig {
   headline: string;
@@ -13,19 +19,43 @@ export interface ServiceContactConfig {
 interface ServiceContactProps {
   serviceName: string;
   contact: ServiceContactConfig;
+  selectedPlan?: SelectedPlan | null;
+  onClearPlan?: () => void;
 }
 
-export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
+export function ServiceContact({
+  serviceName,
+  contact,
+  selectedPlan,
+  onClearPlan,
+}: ServiceContactProps) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [phone, setPhone] = useState('');
+  const [projectDetails, setProjectDetails] = useState('');
+  const [customization, setCustomization] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!firstName || !email || !message) return;
+    if (!firstName || !email || !phone || !projectDetails) return;
+
+    const planLine = selectedPlan
+      ? `Selected Plan: ${selectedPlan.name} (${selectedPlan.price}${selectedPlan.period ?? ''})`
+      : 'Selected Plan: Not specified';
+
+    const fullMessage = [
+      `[${serviceName}]`,
+      planLine,
+      '',
+      'Project Details:',
+      projectDetails,
+      '',
+      'Customization Requirements:',
+      customization || 'None specified',
+    ].join('\n');
 
     setStatus('submitting');
     setErrorMessage('');
@@ -43,7 +73,8 @@ export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
           firstName,
           lastName,
           email,
-          message: `[${serviceName}] ${message}`,
+          phone,
+          message: fullMessage,
           service: serviceName,
         }),
       });
@@ -64,7 +95,10 @@ export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
       setFirstName('');
       setLastName('');
       setEmail('');
-      setMessage('');
+      setPhone('');
+      setProjectDetails('');
+      setCustomization('');
+      onClearPlan?.();
     } catch (error: unknown) {
       setStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Server error. Please try again.');
@@ -147,6 +181,38 @@ export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
                 </h3>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  {selectedPlan ? (
+                    <div className="flex items-start justify-between gap-3 p-4 rounded-xl bg-h2t-red/10 border border-h2t-red/30">
+                      <div className="flex items-start gap-3 min-w-0">
+                        <Package className="w-5 h-5 text-h2t-red shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-[10px] font-bold tracking-widest uppercase text-h2t-red mb-1">
+                            Selected Plan
+                          </p>
+                          <p className="text-white font-bold text-sm">{selectedPlan.name}</p>
+                          <p className="text-gray-400 text-xs mt-0.5">
+                            {selectedPlan.price}
+                            {selectedPlan.period ?? ''}
+                          </p>
+                        </div>
+                      </div>
+                      {onClearPlan && (
+                        <button
+                          type="button"
+                          onClick={onClearPlan}
+                          className="text-gray-500 hover:text-white transition-colors shrink-0"
+                          aria-label="Clear selected plan"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-gray-500 text-xs font-light px-1">
+                      Select a plan above, or describe your project below and we&apos;ll recommend the best fit.
+                    </p>
+                  )}
+
                   {status === 'success' && (
                     <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-xs flex items-center gap-3">
                       <CheckCircle2 className="w-5 h-5 shrink-0" />
@@ -193,19 +259,36 @@ export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2">
-                    <label className="text-white text-[11px] font-semibold tracking-wider">Email Address</label>
-                    <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={status === 'submitting'}
-                        placeholder="john@example.com"
-                        className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-h2t-red/50 transition-all placeholder:text-gray-600 disabled:opacity-50"
-                      />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-white text-[11px] font-semibold tracking-wider">Email Address</label>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          disabled={status === 'submitting'}
+                          placeholder="john@example.com"
+                          className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-h2t-red/50 transition-all placeholder:text-gray-600 disabled:opacity-50"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-white text-[11px] font-semibold tracking-wider">Phone Number</label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                        <input
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
+                          disabled={status === 'submitting'}
+                          placeholder="+91 98765 43210"
+                          className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-h2t-red/50 transition-all placeholder:text-gray-600 disabled:opacity-50"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -214,12 +297,29 @@ export function ServiceContact({ serviceName, contact }: ServiceContactProps) {
                     <div className="relative">
                       <Edit3 className="absolute left-4 top-4 w-4 h-4 text-gray-500" />
                       <textarea
-                        rows={4}
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        rows={3}
+                        value={projectDetails}
+                        onChange={(e) => setProjectDetails(e.target.value)}
                         required
                         disabled={status === 'submitting'}
                         placeholder={contact.messagePlaceholder}
+                        className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-h2t-red/50 transition-all resize-none placeholder:text-gray-600 disabled:opacity-50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-white text-[11px] font-semibold tracking-wider">
+                      Customization Requirements
+                    </label>
+                    <div className="relative">
+                      <Edit3 className="absolute left-4 top-4 w-4 h-4 text-gray-500" />
+                      <textarea
+                        rows={3}
+                        value={customization}
+                        onChange={(e) => setCustomization(e.target.value)}
+                        disabled={status === 'submitting'}
+                        placeholder="Pages, features, integrations, branding, timeline, or any specific changes you need..."
                         className="w-full bg-[#0a0a0a] border border-white/5 rounded-xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-h2t-red/50 transition-all resize-none placeholder:text-gray-600 disabled:opacity-50"
                       />
                     </div>

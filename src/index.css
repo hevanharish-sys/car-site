@@ -61,6 +61,103 @@ body {
   .marquee-reverse {
     animation: marquee-reverse 45s linear infinite;
   }
+
+  .popular-pricing-border {
+    position: relative;
+    padding: 1px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .popular-pricing-border::before {
+    content: '';
+    position: absolute;
+    inset: -120%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 26, 26, 0.15) 40deg,
+      #ff1a1a 70deg,
+      #ffffff 90deg,
+      #ff1a1a 110deg,
+      rgba(255, 26, 26, 0.15) 140deg,
+      transparent 180deg
+    );
+    animation: popular-border-spin 3.5s linear infinite;
+    z-index: 0;
+  }
+
+  .popular-pricing-inner {
+    position: relative;
+    z-index: 1;
+    background: #0c0c0c;
+    border-radius: 0.65rem;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .popular-pricing-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 42%,
+      rgba(255, 26, 26, 0.12) 50%,
+      transparent 58%
+    );
+    background-size: 220% 100%;
+    animation: popular-card-sweep 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .popular-pricing-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .popular-pricing-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+    animation: popular-btn-shine 2.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes popular-border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes popular-card-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes popular-btn-shine {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 200%;
+  }
 }
 
 @keyframes marquee-forward {

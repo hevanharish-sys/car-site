@@ -17,7 +17,7 @@ const services = [
   {
     num: '03',
     title: 'AI Chatbots & WhatsApp',
-    description: '24/7 conversational lead capture.',
+    description: 'Capture leads and automate support 24/7.',
     serviceKey: 'ai-chatbots',
   },
   {

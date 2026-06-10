@@ -15,33 +15,6 @@ const projects = [
     image: '/Elite trader.png',
     url: 'https://theelitetrader.in/',
   },
-  {
-    title: 'The Brew Room',
-    description: 'Modern café website with menu, gallery, and reservations.',
-    location: 'India',
-    image: '/Brew Room cafe demo.png',
-    url: 'https://brew-cafe-sage.vercel.app/',
-  },
-  {
-    title: 'Tea Studio Chennai',
-    description: 'Premium tea lounge brand with an elegant digital presence.',
-    location: 'Chennai, India',
-    image: '/tea studio chennai.png',
-    url: 'https://theteastudio-chennai.vercel.app/',
-  },
-  {
-    title: 'Den Culture Café',
-    description: 'Rooftop café and gaming lounge with luxury branding.',
-    location: 'India',
-    image: '/Den cluture.png',
-    url: 'https://denculturecafe.vercel.app/',
-  },
-  {
-    title: 'SM Tanjore Arts',
-    description: 'Heritage Tanjore paintings — authentic art since 1960.',
-    location: 'India',
-    image: '/thangore arts.png',
-  },
 ];
 
 const fadeUp = {
