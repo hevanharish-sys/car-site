@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Award, Shield, Sparkles, Compass } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 interface VisionPageProps {
   onBack: () => void;
@@ -25,7 +26,7 @@ export function VisionPage({ onBack }: VisionPageProps) {
           title="Go back to Home"
           className="flex items-center justify-center shrink-0 hover:opacity-85 transition-opacity active:scale-95 duration-150"
         >
-          <img src="/image.png" alt="H2T Technologies Logo" className="h-8 sm:h-10 w-auto object-contain" />
+          <BrandLogo height={36} />
         </button>
 
         {/* Right back button */}

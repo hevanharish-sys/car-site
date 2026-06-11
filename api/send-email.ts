@@ -25,7 +25,7 @@ export default async function handler(req: any, res: any) {
     }
 
     // Recipient for leads. Set `LEADS_EMAIL` in your environment (e.g. your Gmail address).
-    const leadsEmail = process.env.LEADS_EMAIL || 'support@h2t.tech';
+    const leadsEmail = process.env.LEADS_EMAIL || 'contact@h2t.tech';
 
     const emailHtml = `
       <!DOCTYPE html>

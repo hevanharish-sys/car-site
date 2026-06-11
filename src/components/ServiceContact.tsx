@@ -109,7 +109,7 @@ export function ServiceContact({
     <section id="service-contact" className="py-20 sm:py-28 bg-[#030303] relative overflow-hidden border-t border-white/5">
       <div className="absolute top-1/4 -left-1/4 w-[50%] h-[50%] bg-red-900/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -141,13 +141,13 @@ export function ServiceContact({
               ))}
             </ul>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col md:flex-row flex-wrap gap-3">
               <a
-                href="mailto:support@h2t.tech"
-                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-h2t-red/30 text-gray-300 text-xs transition-colors"
+                href="mailto:contact@h2t.tech"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-h2t-red/30 text-gray-300 text-xs transition-colors break-all sm:break-normal"
               >
-                <Mail className="w-4 h-4 text-h2t-red" />
-                support@h2t.tech
+                <Mail className="w-4 h-4 text-h2t-red shrink-0" />
+                contact@h2t.tech
               </a>
               <a
                 href="https://wa.me/919566245321"
@@ -155,14 +155,14 @@ export function ServiceContact({
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#051105] border border-green-500/30 text-gray-300 text-xs transition-colors hover:border-green-500/50"
               >
-                <MessageCircle className="w-4 h-4 text-green-500" />
+                <MessageCircle className="w-4 h-4 text-green-500 shrink-0" />
                 WhatsApp Us
               </a>
               <a
                 href="tel:+919566245321"
                 className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-h2t-red/30 text-gray-300 text-xs transition-colors"
               >
-                <Phone className="w-4 h-4 text-h2t-red" />
+                <Phone className="w-4 h-4 text-h2t-red shrink-0" />
                 +91 95662 45321
               </a>
             </div>

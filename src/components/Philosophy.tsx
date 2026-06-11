@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function Philosophy() {
   return (
-    <section id="philosophy" className="py-24 sm:py-32 bg-[#050505] relative overflow-hidden">
+    <section id="philosophy" className="py-20 sm:py-28 lg:py-32 bg-[#050505] relative overflow-hidden">
       <div className="absolute top-1/2 left-0 w-[35%] h-[35%] bg-red-900/10 blur-[120px] rounded-full pointer-events-none -translate-y-1/2" />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -11,7 +11,7 @@ export function Philosophy() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-12 sm:mb-16 tracking-tight"
+          className="text-2xl min-[400px]:text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-10 sm:mb-16 tracking-tight px-2"
         >
           Why <span className="text-h2t-red">Choose Us</span>
         </motion.h2>

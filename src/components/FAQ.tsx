@@ -49,7 +49,7 @@ export function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white leading-[1.1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-white leading-[1.1] tracking-tight">
               Frequently Asked{' '}
               <span className="text-h2t-red">Questions</span>
             </h2>
@@ -93,7 +93,7 @@ export function FAQ() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="sm:hidden rounded-3xl p-8 bg-h2t-red shadow-[0_12px_48px_rgba(255,26,26,0.25)] min-h-[280px] flex flex-col"
+          className="md:hidden rounded-3xl p-6 sm:p-8 bg-h2t-red shadow-[0_12px_48px_rgba(255,26,26,0.25)] min-h-[240px] sm:min-h-[280px] flex flex-col"
         >
           <h3 className="text-white text-xl font-semibold leading-snug">
             {faqs[activeIndex].question}
@@ -104,7 +104,7 @@ export function FAQ() {
         </motion.div>
 
         {/* Desktop — 3-card carousel row */}
-        <div className="hidden sm:flex gap-4 lg:gap-5 min-h-[380px]">
+        <div className="hidden md:flex gap-3 lg:gap-5 min-h-[320px] lg:min-h-[380px]">
           {visibleIndices.map((faqIndex, position) => {
             const faq = faqs[faqIndex];
             const isActive = position === 0;
@@ -117,9 +117,9 @@ export function FAQ() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: position * 0.08 }}
-                className={`text-left rounded-3xl p-8 lg:p-10 transition-all duration-400 flex flex-col ${
+                className={`text-left rounded-3xl p-6 lg:p-10 transition-all duration-400 flex flex-col min-w-0 ${
                   isActive
-                    ? 'flex-[1.6] bg-h2t-red shadow-[0_12px_48px_rgba(255,26,26,0.25)]'
+                    ? 'flex-[1.35] lg:flex-[1.6] bg-h2t-red shadow-[0_12px_48px_rgba(255,26,26,0.25)]'
                     : 'flex-1 bg-[#0f0f0f] border border-white/[0.06] hover:border-white/12 hover:bg-[#141414]'
                 }`}
               >

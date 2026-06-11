@@ -20,7 +20,27 @@ body {
   font-family: var(--font-sans);
   background: var(--color-h2t-black);
   color: #fff;
-  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Fluid images in content areas only — do not apply globally (breaks logos/icons/cover photos) */
+.prose img,
+.media-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 @layer utilities {
@@ -179,15 +199,15 @@ body {
 }
 
 #home {
-  background-image: url('/image copy 9.png');
+  background-image: url('/mobile-hero-bg.png');
   background-size: cover;
-  background-position: right center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 1280px) {
   #home {
-    background-image: url('/mobile-hero-bg.png');
-    background-position: center center;
+    background-image: url('/image copy 9.png');
+    background-position: 88% center;
   }
 }

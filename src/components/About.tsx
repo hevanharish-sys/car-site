@@ -10,26 +10,26 @@ const team = [
   {
     name: 'Hevan Harish LM',
     role: 'Chief Technology Officer',
-    image: '/Harish_xtrme.png',
+    image: '/veo3.png',
     objectPosition: '50% 20%',
   },
   {
     name: 'Ramkishore M',
     role: 'Digital Marketing Specialist',
-    image: '/kishore cdu.jpeg',
-    objectPosition: '50% 15%',
+    image: '/rishore H2T cdu.jpeg',
+    objectPosition: '50% 20%',
   },
   {
     name: 'Balajivasan M',
     role: 'Marketing Head',
-    image: '/H2T .jpeg',
-    objectPosition: '50% 12%',
+    image: '/balaji H2T.jpeg',
+    objectPosition: '50% 20%',
   },
   {
     name: 'Jaswanth Reddy M',
     role: 'Video Editor & Marketing Executive',
-    image: '/jaswant reddy cdu.jpeg',
-    objectPosition: '50% 15%',
+    image: '/jaswant H2T cdu.jpeg',
+    objectPosition: '50% 20%',
   },
 ];
 
@@ -78,7 +78,7 @@ function TeamCard({
           src={member.image}
           alt={member.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           style={{ objectPosition: member.objectPosition }}
         />
         <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-[1]" />
@@ -91,7 +91,7 @@ function TeamCard({
         <h3 className="text-white font-semibold text-base sm:text-lg leading-tight tracking-tight">
           {member.name}
         </h3>
-        <p className="text-gray-500 text-[11px] sm:text-xs font-medium uppercase tracking-[0.12em] mt-2 leading-relaxed">
+        <p className="text-gray-500 text-[10px] sm:text-xs font-medium uppercase tracking-[0.1em] sm:tracking-[0.12em] mt-2 leading-relaxed">
           {member.role}
         </p>
       </div>
@@ -116,12 +116,12 @@ export function About() {
             <p className="text-h2t-red text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase mb-4 sm:mb-6">
               Who we are
             </p>
-            <h2 className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
+            <h2 className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
               About
             </h2>
-            <div className="flex items-center gap-4 sm:gap-5 mt-1 sm:mt-2">
-              <span className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
-              <span className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
+            <div className="flex items-center gap-3 sm:gap-5 mt-1 sm:mt-2">
+              <span className="w-4 h-4 min-[400px]:w-5 min-[400px]:h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
+              <span className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
                 H2T
               </span>
             </div>
@@ -142,7 +142,7 @@ export function About() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
           {team.map((member, index) => (
             <TeamCard key={member.name} member={member} index={index} />
           ))}

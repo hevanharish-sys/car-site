@@ -592,7 +592,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           Back to Services
         </button>
-        <BrandLogo className="h-8 w-auto object-contain" />
+        <BrandLogo height={32} />
       </nav>
 
       {/* Hero */}
@@ -690,7 +690,7 @@ export function ServiceDetailPage({ serviceKey, onBack }: ServiceDetailPageProps
 
         <div
           className={`grid grid-cols-1 gap-4 sm:gap-5 pt-2 ${
-            data.pricing.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'
+            data.pricing.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
           }`}
         >
           {data.pricing.map((tier, idx) => {

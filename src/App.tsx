@@ -17,6 +17,7 @@ import { ExitIntentModal } from './components/ExitIntentModal';
 import { PrivacyModal } from './components/PrivacyModal';
 import { VisionPage } from './components/VisionPage';
 import { ArrowLeft, Check, Sparkles, Zap, ShieldAlert, Cpu } from 'lucide-react';
+import { useContentProtection } from './hooks/useContentProtection';
 
 // Inline H2T Brand Logo Image component
 const Logo = () => (
@@ -28,6 +29,8 @@ const Logo = () => (
 );
 
 export default function App() {
+  useContentProtection();
+
   const [currentPage, setCurrentPage] = useState<string>('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [privacyModalState, setPrivacyModalState] = useState<{ isOpen: boolean; defaultTab: 'privacy' | 'terms' }>({
@@ -372,7 +375,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             title="Chat on WhatsApp"
-            className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[200] w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center rounded-full shadow-[0_8px_32px_rgba(37,211,102,0.45)] hover:shadow-[0_12px_40px_rgba(37,211,102,0.65)] hover:scale-110 active:scale-95 transition-all duration-300 group"
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1.25rem,env(safe-area-inset-right))] sm:bottom-8 sm:right-8 z-[200] w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center rounded-full shadow-[0_8px_32px_rgba(37,211,102,0.45)] hover:shadow-[0_12px_40px_rgba(37,211,102,0.65)] hover:scale-110 active:scale-95 transition-all duration-300 group"
           >
             {/* Pulsing halo ring */}
             <span className="absolute inset-0 rounded-full bg-[#25D366]/30 animate-ping pointer-events-none" style={{ animationDuration: '2s' }} />

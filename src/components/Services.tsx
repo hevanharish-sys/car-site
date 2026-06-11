@@ -98,7 +98,7 @@ export function Services({ onSelectService }: { onSelectService: (serviceKey: st
           </p>
           <a
             href="#contact"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-h2t-red hover:bg-red-600 transition-colors text-white text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-full whitespace-nowrap"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-h2t-red hover:bg-red-600 transition-colors text-white text-xs font-bold uppercase tracking-wider px-6 sm:px-8 py-3.5 sm:py-4 rounded-full"
           >
             Let's Work Together
             <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />

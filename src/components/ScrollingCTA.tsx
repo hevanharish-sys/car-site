@@ -19,7 +19,7 @@ function MarqueeDot() {
 
 function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
   const content = marqueeItems.flatMap((text, i) => [
-    <span key={`${text}-a-${i}`} className="text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] font-bold uppercase tracking-tight text-white/90">
+    <span key={`${text}-a-${i}`} className="text-[2.25rem] min-[400px]:text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] font-bold uppercase tracking-tight text-white/90">
       {text}
     </span>,
     <MarqueeDot key={`dot-a-${i}`} />,
@@ -65,7 +65,7 @@ export function ScrollingCTA() {
           onClick={() => {
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="px-12 sm:px-16 py-4 sm:py-5 rounded-full border border-white/40 text-white text-sm sm:text-base font-semibold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300"
+          className="px-8 sm:px-12 lg:px-16 py-3.5 sm:py-5 rounded-full border border-white/40 text-white text-xs sm:text-base font-semibold uppercase tracking-[0.12em] sm:tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300"
         >
           Tell Us
         </button>

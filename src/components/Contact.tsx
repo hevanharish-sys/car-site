@@ -56,7 +56,7 @@ const InputField = ({ label, icon, type = "text", placeholder, value, onChange, 
 );
 
 const TrustItem = ({ icon, title, desc }: any) => (
-  <div className="flex items-start gap-4 flex-1 min-w-[200px]">
+  <div className="flex items-start gap-4 w-full">
     <div className="w-10 h-10 rounded-full border border-red-500/20 bg-red-500/5 flex items-center justify-center flex-shrink-0 text-red-500">
       {icon}
     </div>
@@ -139,10 +139,10 @@ export function Contact() {
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-12">
         {/* Main Grid: Left (Info) | Right (Form) */}
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* LEFT COLUMN */}
-          <div className="xl:col-span-5 flex flex-col">
+          <div className="lg:col-span-5 flex flex-col">
             <div className="mb-10">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/5 border border-red-500/20 mb-8">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
@@ -153,7 +153,7 @@ export function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-5xl md:text-[64px] font-extrabold leading-[1.05] mb-6 text-white tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.05] mb-6 text-white tracking-tight"
               >
                 Let's Build<br />Something<br />
                 <span className="text-red-500 text-glow block mt-1">Powerful.</span>
@@ -178,7 +178,7 @@ export function Contact() {
               transition={{ delay: 0.2 }}
               className="flex flex-col gap-3 w-full max-w-md"
             >
-              <ContactCard icon={<Mail className="w-5 h-5" strokeWidth={1.5} />} title="EMAIL US" desc="support@h2t.tech" href="mailto:support@h2t.tech" />
+              <ContactCard icon={<Mail className="w-5 h-5" strokeWidth={1.5} />} title="EMAIL US" desc="contact@h2t.tech" href="mailto:contact@h2t.tech" />
               <ContactCard icon={<Phone className="w-5 h-5" strokeWidth={1.5} />} title="CALL US" desc="+91 95662 45321" href="tel:+919566245321" />
               <WhatsAppCard href="https://wa.me/919566245321" />
             </motion.div>
@@ -189,7 +189,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="xl:col-span-7"
+            className="lg:col-span-7"
           >
             <div className="relative p-[1px] rounded-[2rem] bg-gradient-to-b from-red-500/40 via-red-500/5 to-transparent">
               {/* Top right decorative elements */}
@@ -199,12 +199,12 @@ export function Contact() {
                  <div className="w-3 h-1.5 bg-red-500/80 -skew-x-[20deg]" />
               </div>
 
-              <div className="bg-[#080808] rounded-[2rem] p-6 sm:p-10 relative overflow-hidden h-full border border-black shadow-[inset_0_0_60px_rgba(255,0,0,0.03)]">
+              <div className="bg-[#080808] rounded-2xl sm:rounded-[2rem] p-5 sm:p-8 lg:p-10 relative overflow-hidden h-full border border-black shadow-[inset_0_0_60px_rgba(255,0,0,0.03)]">
                 {/* Header row in form */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-6 border-b border-white/5">
+                <div className="flex flex-col gap-3 mb-8 sm:mb-10 pb-6 border-b border-white/5">
                   <h3 className="text-red-500 font-bold tracking-widest text-[13px] uppercase">Send Us A Message</h3>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#0a0a0a] border border-white/5">
-                    <Zap className="w-3.5 h-3.5 text-green-400 fill-green-400" />
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#0a0a0a] border border-white/5 w-fit max-w-full">
+                    <Zap className="w-3.5 h-3.5 text-green-400 fill-green-400 shrink-0" />
                     <span className="text-gray-400 text-[10px] font-medium tracking-wide">We typically reply within a few minutes</span>
                   </div>
                 </div>
@@ -318,7 +318,7 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="w-full bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 lg:p-8 flex flex-wrap xl:flex-nowrap justify-between gap-8 xl:gap-6 mt-4"
+          className="w-full bg-[#0a0a0a] border border-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 mt-4"
         >
           <TrustItem icon={<ShieldCheck className="w-5 h-5"/>} title="100% SECURE" desc="Your data is safe with us always." />
           <TrustItem icon={<Clock className="w-5 h-5"/>} title="FAST REPLY" desc="We reply within minutes guaranteed." />

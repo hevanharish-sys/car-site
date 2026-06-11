@@ -15,6 +15,33 @@ const projects = [
     image: '/Elite trader.png',
     url: 'https://theelitetrader.in/',
   },
+  {
+    title: 'The Brew Room',
+    description: 'Modern café website with menu, gallery, and reservations.',
+    location: 'India',
+    image: '/Brew Room cafe demo.png',
+    url: 'https://brew-cafe-sage.vercel.app/',
+  },
+  {
+    title: 'Tea Studio Chennai',
+    description: 'Premium tea lounge brand with an elegant digital presence.',
+    location: 'Chennai, India',
+    image: '/tea studio chennai.png',
+    url: 'https://theteastudio-chennai.vercel.app/',
+  },
+  {
+    title: 'Den Culture Café',
+    description: 'Rooftop café and gaming lounge with luxury branding.',
+    location: 'India',
+    image: '/Den cluture.png',
+    url: 'https://denculturecafe.vercel.app/',
+  },
+  {
+    title: 'SM Tanjore Arts',
+    description: 'Heritage Tanjore paintings — authentic art since 1960.',
+    location: 'India',
+    image: '/thangore arts.png',
+  },
 ];
 
 const fadeUp = {
@@ -41,12 +68,12 @@ export function FeaturedProjects() {
           variants={fadeUp}
           className="mb-20 sm:mb-28 lg:mb-40"
         >
-          <h2 className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.95] tracking-tight">
+          <h2 className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.95] tracking-tight break-words">
             Featured
           </h2>
-          <div className="flex items-center gap-4 sm:gap-5 mt-1 sm:mt-2">
-            <span className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
-            <span className="text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.95] tracking-tight">
+          <div className="flex items-center gap-3 sm:gap-5 mt-1 sm:mt-2">
+            <span className="w-4 h-4 min-[400px]:w-5 min-[400px]:h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
+            <span className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.95] tracking-tight break-words">
               Projects
             </span>
           </div>
@@ -63,7 +90,7 @@ export function FeaturedProjects() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
                 variants={fadeUp}
-                className={`flex flex-col w-full max-w-[300px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] ${
+                className={`flex flex-col w-full max-w-full sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] mx-auto lg:mx-0 ${
                   isRight
                     ? 'lg:mt-36 xl:mt-48 lg:mr-auto'
                     : 'lg:ml-auto'
@@ -80,7 +107,7 @@ export function FeaturedProjects() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-auto object-contain"
+                      className="w-full h-auto object-contain media-fluid"
                       loading="lazy"
                     />
                   </a>
@@ -88,7 +115,7 @@ export function FeaturedProjects() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-contain"
+                    className="w-full h-auto object-contain media-fluid"
                     loading="lazy"
                   />
                 )}

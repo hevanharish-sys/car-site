@@ -12,11 +12,11 @@ export function Footer({ onOpenPrivacy, onOpenVision }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="flex items-center gap-4 sm:gap-5 flex-shrink-0">
+          <div className="flex flex-col min-[480px]:flex-row items-center gap-3 sm:gap-5 flex-shrink-0">
             <a href="#home" className="block hover:opacity-85 transition-opacity">
-              <BrandLogo className="h-8 sm:h-9 w-auto object-contain" />
+              <BrandLogo height={36} />
             </a>
-            <div className="h-8 sm:h-9 w-px bg-white/10" aria-hidden="true" />
+            <div className="hidden min-[480px]:block h-8 sm:h-9 w-px bg-white/10" aria-hidden="true" />
             <img
               src="/MSME H2T .jpeg"
               alt="Ministry of Micro, Small and Medium Enterprises - Government of India"
@@ -27,7 +27,7 @@ export function Footer({ onOpenPrivacy, onOpenVision }: FooterProps) {
           <div className="flex items-center gap-4">
             {/* Gmail */}
             <a 
-              href="mailto:support@h2t.tech" 
+              href="mailto:contact@h2t.tech" 
               title="Email Us"
               className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-h2t-red hover:text-white hover:border-h2t-red transition-all duration-300"
             >
@@ -101,7 +101,7 @@ export function Footer({ onOpenPrivacy, onOpenVision }: FooterProps) {
           <p className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} H2T Technologies. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-gray-500">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-gray-500">
             <button 
               onClick={() => onOpenPrivacy('privacy')} 
               className="hover:text-white transition-colors cursor-pointer focus:outline-none"
