@@ -30,13 +30,6 @@ const projects = [
     url: 'https://theteastudio-chennai.vercel.app/',
   },
   {
-    title: 'Den Culture Café',
-    description: 'Rooftop café and gaming lounge with luxury branding.',
-    location: 'India',
-    image: '/Den cluture.png',
-    url: 'https://denculturecafe.vercel.app/',
-  },
-  {
     title: 'SM Tanjore Arts',
     description: 'Heritage Tanjore paintings — authentic art since 1960.',
     location: 'India',
