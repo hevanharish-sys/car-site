@@ -117,12 +117,12 @@ export function About() {
               Who we are
             </p>
             <h2 className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
-              About
+              Meet
             </h2>
             <div className="flex items-center gap-3 sm:gap-5 mt-1 sm:mt-2">
               <span className="w-4 h-4 min-[400px]:w-5 min-[400px]:h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
               <span className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
-                H2T
+                Our Team
               </span>
             </div>
           </motion.header>
