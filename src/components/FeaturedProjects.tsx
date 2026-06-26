@@ -29,12 +29,6 @@ const projects = [
     image: '/tea studio chennai.png',
     url: 'https://theteastudio-chennai.vercel.app/',
   },
-  {
-    title: 'SM Tanjore Arts',
-    description: 'Heritage Tanjore paintings — authentic art since 1960.',
-    location: 'India',
-    image: '/thangore arts.png',
-  },
 ];
 
 const fadeUp = {
