@@ -298,7 +298,7 @@ export function ExitIntentModal() {
                             exit={{ opacity: 0 }}
                             className="flex items-center gap-2"
                           >
-                            <span>Claim Free Blueprint</span>
+                            <span>Get Free Consultation</span>
                             <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
                           </motion.div>
                         )}
