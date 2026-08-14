@@ -5,9 +5,9 @@ import { BrandLogo } from './BrandLogo';
 
 const navItems = [
   { name: 'Home', href: '#home', id: 'home' },
+  { name: 'About', href: '#about', id: 'about' },
   { name: 'Works', href: '#works', id: 'works' },
   { name: 'Services', href: '#services', id: 'services' },
-  { name: 'Meet Our Team', href: '#about', id: 'about', shortName: 'Team' },
   { name: 'Contact', href: '#contact', id: 'contact' },
 ];
 

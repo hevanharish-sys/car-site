@@ -343,11 +343,11 @@ export default function App() {
     <div className="min-h-screen bg-h2t-black text-white font-sans selection:bg-h2t-red selection:text-white">
       <Navbar />
       <Hero />
+      <About />
       <FeaturedProjects />
       <Philosophy />
       <Services onSelectService={(serviceKey) => setCurrentPage(serviceKey)} />
       {/* <Portfolio /> */}
-      <About />
       <FAQ />
       <Contact />
       <ScrollingCTA />

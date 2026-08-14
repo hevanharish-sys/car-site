@@ -1,103 +1,52 @@
 import { motion } from 'framer-motion';
 
-const team = [
+const pillars = [
   {
-    name: 'Hareesh VN',
-    role: 'Founder & CEO',
-    image: '/image-fc785e2c-1a9e-44c8-9e39-951bee541211.png',
-    objectPosition: '50% 18%',
+    index: '01',
+    title: 'Automate',
+    copy: 'We replace slow, manual work with systems that run quietly in the background — so your team can focus on growth.',
   },
   {
-    name: 'Hevan Harish LM',
-    role: 'Chief Technology Officer',
-    image: '/veo3.png',
-    objectPosition: '50% 20%',
+    index: '02',
+    title: 'Generate',
+    copy: 'We build digital experiences that attract the right audience and turn attention into qualified, high-intent leads.',
   },
   {
-    name: 'Ramkishore M',
-    role: 'Digital Marketing Specialist',
-    image: '/rishore H2T cdu.jpeg',
-    objectPosition: '50% 20%',
-  },
-  {
-    name: 'Balajivasan M',
-    role: 'Marketing Head',
-    image: '/balaji H2T.jpeg',
-    objectPosition: '50% 20%',
-  },
-  {
-    name: 'Jaswanth Reddy M',
-    role: 'Video Editor & Marketing Executive',
-    image: '/jaswant H2T cdu.jpeg',
-    objectPosition: '50% 20%',
+    index: '03',
+    title: 'Scale',
+    copy: 'We design for the next stage, not just the launch — platforms, funnels, and strategy that grow with your revenue.',
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: i * 0.08,
-      ease: [0.16, 1, 0.3, 1] as const,
-    },
-  }),
-};
+const ease = [0.16, 1, 0.3, 1] as const;
 
 const headerFade = {
   hidden: { opacity: 0, y: 48 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 1, ease },
   },
 };
 
-function TeamCard({
-  member,
-  index,
-}: {
-  member: (typeof team)[0];
-  index: number;
-}) {
-  return (
-    <motion.article
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-40px' }}
-      variants={fadeUp}
-      className="group relative flex flex-col rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.08] hover:border-h2t-red/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,26,26,0.12)]"
-    >
-      {/* Photo */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#0c0c0c]">
-        <div className="absolute inset-0 bg-gradient-to-b from-h2t-red/10 via-transparent to-transparent z-[1] pointer-events-none" />
-        <img
-          src={member.image}
-          alt={member.name}
-          loading="lazy"
-          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          style={{ objectPosition: member.objectPosition }}
-        />
-        <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-[1]" />
-        <div className="absolute top-0 left-0 w-full h-[3px] bg-h2t-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 z-[2]" />
-      </div>
+const lineFade = {
+  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.8, delay: 0.12 + i * 0.12, ease },
+  }),
+};
 
-      {/* Info */}
-      <div className="relative p-5 sm:p-6 flex-1 flex flex-col">
-        <div className="w-8 h-[2px] bg-h2t-red mb-4 rounded-full" />
-        <h3 className="text-white font-semibold text-base sm:text-lg leading-tight tracking-tight">
-          {member.name}
-        </h3>
-        <p className="text-gray-500 text-[10px] sm:text-xs font-medium uppercase tracking-[0.1em] sm:tracking-[0.12em] mt-2 leading-relaxed">
-          {member.role}
-        </p>
-      </div>
-    </motion.article>
-  );
-}
+const cardFade = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: 0.2 + i * 0.12, ease },
+  }),
+};
 
 export function About() {
   return (
@@ -117,12 +66,12 @@ export function About() {
               Who we are
             </p>
             <h2 className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
-              Meet
+              About
             </h2>
             <div className="flex items-center gap-3 sm:gap-5 mt-1 sm:mt-2">
               <span className="w-4 h-4 min-[400px]:w-5 min-[400px]:h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-h2t-red shadow-[0_0_30px_rgba(255,26,26,0.55)] shrink-0" />
               <span className="text-[2rem] min-[400px]:text-[2.75rem] sm:text-[4rem] lg:text-[5.5rem] font-bold text-white leading-[0.92] tracking-tight">
-                Our Team
+                H2T
               </span>
             </div>
           </motion.header>
@@ -131,7 +80,7 @@ export function About() {
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, delay: 0.15, ease }}
             className="lg:max-w-sm lg:pb-2"
           >
             <div className="hidden lg:block w-12 h-[2px] bg-h2t-red mb-6 ml-auto" />
@@ -142,12 +91,63 @@ export function About() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
-          {team.map((member, index) => (
-            <TeamCard key={member.name} member={member} index={index} />
+        <div className="max-w-4xl mb-14 sm:mb-20 lg:mb-24">
+          {['We don\'t just ship websites.', 'We build revenue engines.'].map((line, i) => (
+            <motion.p
+              key={line}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              variants={lineFade}
+              className="text-xl min-[400px]:text-2xl sm:text-3xl lg:text-4xl font-semibold text-white leading-[1.2] tracking-tight"
+            >
+              {i === 1 ? (
+                <>
+                  We build <span className="text-h2t-red">revenue engines.</span>
+                </>
+              ) : (
+                line
+              )}
+            </motion.p>
           ))}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4, ease }}
+            className="mt-6 sm:mt-8 text-gray-400 text-sm sm:text-base lg:text-lg font-light leading-relaxed max-w-2xl"
+          >
+            H2T Technologies is a Chennai-based digital studio. From first impression to
+            conversion, we craft high-performance sites, marketing systems, and automation
+            that make growth feel inevitable — not accidental.
+          </motion.p>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+          {pillars.map((pillar, index) => (
+            <motion.article
+              key={pillar.title}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              variants={cardFade}
+              className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8 overflow-hidden hover:border-h2t-red/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,26,26,0.12)]"
+            >
+              <div className="absolute top-0 left-0 h-[3px] w-0 group-hover:w-full bg-h2t-red transition-all duration-500" />
+              <p className="text-h2t-red text-[11px] font-bold tracking-[0.28em] mb-5">
+                {pillar.index}
+              </p>
+              <h3 className="text-white text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+                {pillar.title}
+              </h3>
+              <p className="text-gray-500 text-sm font-light leading-relaxed">
+                {pillar.copy}
+              </p>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );
