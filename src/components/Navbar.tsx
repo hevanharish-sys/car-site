@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
-const navItems = [
+const navItems: { name: string; href: string; id: string; shortName?: string }[] = [
   { name: 'Home', href: '#home', id: 'home' },
   { name: 'About', href: '#about', id: 'about' },
   { name: 'Works', href: '#works', id: 'works' },
